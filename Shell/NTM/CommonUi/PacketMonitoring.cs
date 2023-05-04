@@ -76,7 +76,7 @@ namespace Shell
         }
         private void UdpSessionNotify(object sender, UdpStreamArivedEventArgs e)
         {
-            MessageBox.Show("UdpSessionArrivedEvent");
+            /*MessageBox.Show("UdpSessionArrivedEvent");*/
         }
         private void PacketGridInvalidate(object sender, EventArgs e)
         {

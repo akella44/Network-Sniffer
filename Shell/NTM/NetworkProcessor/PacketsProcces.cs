@@ -66,7 +66,6 @@ namespace NTM
         public void StopPacketProcessing()
         {
             _cts.Cancel();
-            /*_packetProcessingTask.ConfigureAwait(false);*/
             Device.StopCapture();
             Device.Close();
             /*HandleUnfinishedSessions();*/

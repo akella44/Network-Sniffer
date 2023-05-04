@@ -38,7 +38,7 @@
             this.Lenght = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stopButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
-            this.Menu = new System.Windows.Forms.MenuStrip();
+            this.ContextMenuStrip = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statisticsMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +53,7 @@
             this.ScrollDown = new System.Windows.Forms.CheckBox();
             this.PathTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.packetDataGrid)).BeginInit();
-            this.Menu.SuspendLayout();
+            this.ContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // packetDataGrid
@@ -158,17 +158,17 @@
             this.startButton.TabIndex = 0;
             this.startButton.UseVisualStyleBackColor = false;
             // 
-            // Menu
+            // ContextMenuStrip
             // 
-            this.Menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
             this.statisticsMenu});
-            this.Menu.Location = new System.Drawing.Point(0, 0);
-            this.Menu.Name = "Menu";
-            this.Menu.Size = new System.Drawing.Size(1008, 24);
-            this.Menu.TabIndex = 3;
-            this.Menu.Text = "Menu";
-            this.Menu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
+            this.ContextMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.ContextMenuStrip.Name = "ContextMenuStrip";
+            this.ContextMenuStrip.Size = new System.Drawing.Size(1008, 24);
+            this.ContextMenuStrip.TabIndex = 3;
+            this.ContextMenuStrip.Text = "Menu";
+            this.ContextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // файлToolStripMenuItem
             // 
@@ -191,6 +191,7 @@
             this.statisticsMenu.Name = "statisticsMenu";
             this.statisticsMenu.Size = new System.Drawing.Size(80, 20);
             this.statisticsMenu.Text = "Статистика";
+            this.statisticsMenu.Click += new System.EventHandler(this.statisticsMenu_Click);
             // 
             // formOfCaptureDataToolStripMenuItem
             // 
@@ -213,16 +214,16 @@
             // 
             // udpToolStripMenuItem
             // 
-            this.udpToolStripMenuItem.Checked = true;
-            this.udpToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.udpToolStripMenuItem.CheckOnClick = true;
             this.udpToolStripMenuItem.Name = "udpToolStripMenuItem";
             this.udpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.udpToolStripMenuItem.Text = "Udp";
+            this.udpToolStripMenuItem.CheckedChanged += new System.EventHandler(this.udpToolStripMenuItem_ChekedChanged);
+            this.udpToolStripMenuItem.Click += new System.EventHandler(this.udpToolStripMenuItem_Click);
             // 
             // tcpToolStripMenuItem
             // 
-            this.tcpToolStripMenuItem.Checked = true;
-            this.tcpToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tcpToolStripMenuItem.CheckOnClick = true;
             this.tcpToolStripMenuItem.Name = "tcpToolStripMenuItem";
             this.tcpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tcpToolStripMenuItem.Text = "Tcp";
@@ -238,16 +239,14 @@
             // 
             // udpToolStripMenuItem1
             // 
-            this.udpToolStripMenuItem1.Checked = true;
-            this.udpToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.udpToolStripMenuItem1.CheckOnClick = true;
             this.udpToolStripMenuItem1.Name = "udpToolStripMenuItem1";
             this.udpToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.udpToolStripMenuItem1.Text = "Udp";
             // 
             // tcpToolStripMenuItem1
             // 
-            this.tcpToolStripMenuItem1.Checked = true;
-            this.tcpToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tcpToolStripMenuItem1.CheckOnClick = true;
             this.tcpToolStripMenuItem1.Name = "tcpToolStripMenuItem1";
             this.tcpToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.tcpToolStripMenuItem1.Text = "Tcp";
@@ -292,14 +291,14 @@
             this.Controls.Add(this.packetDataGrid);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.startButton);
-            this.Controls.Add(this.Menu);
-            this.MainMenuStrip = this.Menu;
+            this.Controls.Add(this.ContextMenuStrip);
+            this.MainMenuStrip = this.ContextMenuStrip;
             this.MinimumSize = new System.Drawing.Size(1024, 640);
             this.Name = "PacketMonitoring";
             this.Text = "NTM System";
             ((System.ComponentModel.ISupportInitialize)(this.packetDataGrid)).EndInit();
-            this.Menu.ResumeLayout(false);
-            this.Menu.PerformLayout();
+            this.ContextMenuStrip.ResumeLayout(false);
+            this.ContextMenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -309,7 +308,7 @@
 
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button stopButton;
-        private System.Windows.Forms.MenuStrip Menu;
+        private System.Windows.Forms.MenuStrip ContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem statisticsMenu;
         public System.Windows.Forms.DataGridView packetDataGrid;
         private System.Windows.Forms.TextBox filterTextBox;

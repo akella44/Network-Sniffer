@@ -50,8 +50,6 @@ namespace NTM.PacketsProcessor
                     });
 
                     this._tcpSessionsBuilder.HandlePacket(Packet);
-                    /*if (_tcpSessionsBuilder.completedSessions.Count != 0)
-                    {*/
                     _tcpSessionsBuilder.completedSessions.AsParallel().ForAll((session) =>
                     {
                         TcpSessionArrived?.Invoke(this, new TcpSessionArivedEventArgs()
@@ -60,7 +58,6 @@ namespace NTM.PacketsProcessor
                         });
                         _tcpSessionsBuilder.completedSessions.Remove(session);
                     });
-                    /*}*/
                 }
             }
             catch (Exception ex)

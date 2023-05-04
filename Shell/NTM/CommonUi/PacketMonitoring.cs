@@ -30,7 +30,7 @@ namespace Shell
         private Task _sniffing;
         private List<NetworkPacket> PacketsView;
 
-        private StatProcessor _statProcessor;
+        /*private CsvTempWriter _statProcessor;*/
         public PacketMonitoring(ILiveDevice device)
         {
             _cts = new CancellationTokenSource();
@@ -43,14 +43,15 @@ namespace Shell
             _snif = new PacketsProcces(device);
             _snif.StartSniff();
 
-            _statProcessor = new StatProcessor(_snif);
-            PathTextBox.Text = _statProcessor.FileName;
+            sessionsToolStripMenuItem.DropDown.Closing += checkedItems_MenuUnclosing;
+            paketsToolStripMenuItem.DropDown.Closing += checkedItems_MenuUnclosing;
+            /*PathTextBox.Text = _statProcessor.FileName;*/
 
             PacketsView = new List<NetworkPacket>();
             packetDataGrid.CellValueNeeded += dgv_CellValueNeeded;
 
             Application.Idle += PacketGridInvalidate;
-
+            
             _snif._tcpHandler.TcpPacketArived += AddTcpPacketToList;
             _snif._udpHandler.UdpPacketArived += AddUdpPacketToList;
 
@@ -60,12 +61,19 @@ namespace Shell
             startButton.Click += strartButton_OnClick;
             stopButton.Click += stopButton_OnClick;
 
+            udpToolStripMenuItem.ShowDropDown();
+
             ToolTip startToolTip = new ToolTip();
             startToolTip.SetToolTip(startButton, "Начать захват");
             ToolTip stopToolTip = new ToolTip();
             startToolTip.SetToolTip(stopButton, "Приостановить захват");
         }
 
+        private void checkedItems_MenuUnclosing(object sender, ToolStripDropDownClosingEventArgs e)
+        {
+            if (e.CloseReason == ToolStripDropDownCloseReason.ItemClicked)
+                e.Cancel = true;
+        }
         private void UdpSessionNotify(object sender, UdpStreamArivedEventArgs e)
         {
             MessageBox.Show("UdpSessionArrivedEvent");
@@ -111,6 +119,23 @@ namespace Shell
             }
 
         }
+
+        private void udpToolStripMenuItem_ChekedChanged(object sender, EventArgs e)
+        {
+            CsvTempWriter<UdpSession, UdpStreamArivedEventArgs> udpSessionCsv = new CsvTempWriter<UdpSession, UdpStreamArivedEventArgs>();
+            if (udpToolStripMenuItem.Checked)
+            {
+                udpSessionCsv.InitTempFile();
+                _snif._udpHandler.UdpSessionArrived += udpSessionCsv.AddObjToTempCsvFile;
+            }
+            else
+            {
+                _snif._udpHandler.UdpSessionArrived -= udpSessionCsv.AddObjToTempCsvFile;
+                udpSessionCsv.Dispose();
+            }
+        }
+        
+        
         private void PacketMonitoring_Load(object sender, EventArgs e)
         {
 
@@ -143,6 +168,16 @@ namespace Shell
         private void formOfCaptureDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void statisticsMenu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void udpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -181,7 +181,7 @@
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             // 
             // statisticsMenu
@@ -208,7 +208,7 @@
             this.udpToolStripMenuItem,
             this.tcpToolStripMenuItem});
             this.sessionsToolStripMenuItem.Name = "sessionsToolStripMenuItem";
-            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sessionsToolStripMenuItem.Text = "Сессии";
             // 
             // udpToolStripMenuItem
@@ -216,7 +216,7 @@
             this.udpToolStripMenuItem.Checked = true;
             this.udpToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.udpToolStripMenuItem.Name = "udpToolStripMenuItem";
-            this.udpToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.udpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.udpToolStripMenuItem.Text = "Udp";
             // 
             // tcpToolStripMenuItem
@@ -224,7 +224,7 @@
             this.tcpToolStripMenuItem.Checked = true;
             this.tcpToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tcpToolStripMenuItem.Name = "tcpToolStripMenuItem";
-            this.tcpToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.tcpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tcpToolStripMenuItem.Text = "Tcp";
             // 
             // paketsToolStripMenuItem
@@ -233,7 +233,7 @@
             this.udpToolStripMenuItem1,
             this.tcpToolStripMenuItem1});
             this.paketsToolStripMenuItem.Name = "paketsToolStripMenuItem";
-            this.paketsToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.paketsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.paketsToolStripMenuItem.Text = "Пакеты";
             // 
             // udpToolStripMenuItem1
@@ -241,7 +241,7 @@
             this.udpToolStripMenuItem1.Checked = true;
             this.udpToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.udpToolStripMenuItem1.Name = "udpToolStripMenuItem1";
-            this.udpToolStripMenuItem1.Size = new System.Drawing.Size(96, 22);
+            this.udpToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.udpToolStripMenuItem1.Text = "Udp";
             // 
             // tcpToolStripMenuItem1
@@ -249,7 +249,7 @@
             this.tcpToolStripMenuItem1.Checked = true;
             this.tcpToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tcpToolStripMenuItem1.Name = "tcpToolStripMenuItem1";
-            this.tcpToolStripMenuItem1.Size = new System.Drawing.Size(96, 22);
+            this.tcpToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.tcpToolStripMenuItem1.Text = "Tcp";
             // 
             // filterTextBox

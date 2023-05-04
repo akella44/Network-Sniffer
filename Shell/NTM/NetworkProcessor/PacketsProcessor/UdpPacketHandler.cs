@@ -47,22 +47,20 @@ namespace NTM.PacketsProcessor
                     });
 
                     this._udpStreamBuilder.HandlePacket(Packet);
-                    if (_udpStreamBuilder.completedSessions.Count != 0)
+                    /*this._udpStreamBuilder.Validate();*/
+                    _udpStreamBuilder.completedSessions.AsParallel().ForAll((session) =>
                     {
-                        _udpStreamBuilder.completedSessions.AsParallel().ForAll((session) =>
+                        UdpSessionArrived?.Invoke(this, new UdpStreamArivedEventArgs()
                         {
-                            UdpSessionArrived?.Invoke(this, new UdpStreamArivedEventArgs()
-                            {
-                                UdpSession = session
-                            });
-                            _udpStreamBuilder.completedSessions.Remove(session);
+                            UdpSession = session
                         });
-                    }
+                        _udpStreamBuilder.completedSessions.Remove(session);
+                    });
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                /*throw new Exception();*/
             }
         }
 

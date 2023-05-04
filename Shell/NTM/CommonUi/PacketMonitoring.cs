@@ -54,6 +54,8 @@ namespace Shell
             _snif._tcpHandler.TcpPacketArived += AddTcpPacketToList;
             _snif._udpHandler.UdpPacketArived += AddUdpPacketToList;
 
+            _snif._udpHandler.UdpSessionArrived += UdpSessionNotify;
+
             startButton.Visible = false;
             startButton.Click += strartButton_OnClick;
             stopButton.Click += stopButton_OnClick;
@@ -64,6 +66,10 @@ namespace Shell
             startToolTip.SetToolTip(stopButton, "Приостановить захват");
         }
 
+        private void UdpSessionNotify(object sender, UdpStreamArivedEventArgs e)
+        {
+            MessageBox.Show("UdpSessionArrivedEvent");
+        }
         private void PacketGridInvalidate(object sender, EventArgs e)
         {
             packetDataGrid.RowCount = PacketsView.Count;
@@ -76,7 +82,6 @@ namespace Shell
             {
                 PacketsView.Add(e.Packet);
             }
-
         }
 
         private void AddUdpPacketToList(object sender, UdpPacketArivedEventArgs e)

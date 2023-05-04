@@ -22,7 +22,7 @@ namespace NTM
         private object _packetsQueueLock;
         private Task _packetProcessingTask;
         private CancellationTokenSource _cts;
-
+        
         public ILiveDevice Device { get; private set; }
 
         public PacketsProcces(ILiveDevice device)
@@ -70,6 +70,7 @@ namespace NTM
             Device.StopCapture();
             Device.Close();
             /*HandleUnfinishedSessions();*/
+            _udpHandler.HandleUnfinishedUdpSessions();
         }
 
         private void AddPacketToQueue(object sender, PacketCapture e)
@@ -97,10 +98,10 @@ namespace NTM
                 TcpSession = session
             }));
 
-            *//*_udpStreamBuilder.Sessions.AsParallel().ForAll(session => UdpSessionArrived?.Invoke(this, new UdpSessionArrivedEventArgs()
+            _udpStreamBuilder.Sessions.AsParallel().ForAll(session => UdpSessionArrived?.Invoke(this, new UdpSessionArrivedEventArgs()
             {
                 UdpSession = session
-            }));*//*
+            }));
         }*/
         private void ProcessPaketsFromQueue(CancellationToken ct)
         {

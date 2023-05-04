@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using NTM.PacketsProcessor;
 using NTM.Event_Args;
-
 namespace NTM.PacketsProcessor
 {
     public class TcpPacketHandler
@@ -51,17 +50,17 @@ namespace NTM.PacketsProcessor
                     });
 
                     this._tcpSessionsBuilder.HandlePacket(Packet);
-                    if (_tcpSessionsBuilder.completedSessions.Count != 0)
+                    /*if (_tcpSessionsBuilder.completedSessions.Count != 0)
+                    {*/
+                    _tcpSessionsBuilder.completedSessions.AsParallel().ForAll((session) =>
                     {
-                        _tcpSessionsBuilder.completedSessions.AsParallel().ForAll((session) =>
+                        TcpSessionArrived?.Invoke(this, new TcpSessionArivedEventArgs()
                         {
-                            TcpSessionArrived?.Invoke(this, new TcpSessionArivedEventArgs()
-                            {
-                                TcpSession = session
-                            });
-                            _tcpSessionsBuilder.completedSessions.Remove(session);
+                            TcpSession = session
                         });
-                    }
+                        _tcpSessionsBuilder.completedSessions.Remove(session);
+                    });
+                    /*}*/
                 }
             }
             catch (Exception ex)

@@ -146,6 +146,7 @@
             this.stopButton.Size = new System.Drawing.Size(25, 25);
             this.stopButton.TabIndex = 1;
             this.stopButton.UseVisualStyleBackColor = false;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_OnClick);
             // 
             // startButton
             // 
@@ -158,6 +159,7 @@
             this.startButton.Size = new System.Drawing.Size(25, 25);
             this.startButton.TabIndex = 0;
             this.startButton.UseVisualStyleBackColor = false;
+            this.startButton.Click += new System.EventHandler(this.strartButton_OnClick);
             // 
             // ContextMenuStrip
             // 

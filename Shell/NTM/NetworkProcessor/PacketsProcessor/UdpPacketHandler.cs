@@ -11,9 +11,7 @@ namespace NTM.PacketsProcessor
 {
     public class UdpPacketHandler
     {
-        /*public delegate void UdpPacketArivedEventHandler(object sender, UdpPacketArivedEventArgs e);*/
         public event EventHandler<UdpPacketArivedEventArgs> UdpPacketArived;
-        /*public delegate void UdpSessionArrivedEventHandler(object sender, UdpStreamArivedEventArgs e);*/
         public event EventHandler<UdpStreamArivedEventArgs> UdpSessionArrived;
 
         private UdpStreamBuilder _udpStreamBuilder;

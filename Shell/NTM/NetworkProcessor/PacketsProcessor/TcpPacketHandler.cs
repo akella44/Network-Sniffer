@@ -9,9 +9,7 @@ namespace NTM.PacketsProcessor
 {
     public class TcpPacketHandler
     {
-        /*public delegate void TcpPacketArivedEventHandler(object sender, TcpPacketArivedEventArgs e);*/
         public event EventHandler<TcpPacketArivedEventArgs> TcpPacketArived;
-        /*public delegate void TcpSessionArivedEventHandler(object sender, TcpSessionArivedEventArgs e);*/
         public event EventHandler<TcpSessionArivedEventArgs> TcpSessionArrived;
 
         private TcpSessionsBuilder _tcpSessionsBuilder;

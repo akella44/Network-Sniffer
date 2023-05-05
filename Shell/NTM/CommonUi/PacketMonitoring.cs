@@ -53,8 +53,7 @@ namespace Shell
 
             sessionsToolStripMenuItem.DropDown.Closing += checkedItems_MenuUnclosing;
             paketsToolStripMenuItem.DropDown.Closing += checkedItems_MenuUnclosing;
-            /*PathTextBox.Text = _statProcessor.FileName;*/
-
+            
             PacketsView = new List<NetworkPacket>();
             packetDataGrid.CellValueNeeded += dgv_CellValueNeeded;
 
@@ -63,12 +62,7 @@ namespace Shell
             _snif._tcpHandler.TcpPacketArived += AddTcpPacketToList;
             _snif._udpHandler.UdpPacketArived += AddUdpPacketToList;
 
-            _snif._udpHandler.UdpSessionArrived += UdpSessionNotify;
-
             startButton.Visible = false;
-            startButton.Click += strartButton_OnClick;
-            stopButton.Click += stopButton_OnClick;
-
 
             ToolTip startToolTip = new ToolTip();
             startToolTip.SetToolTip(startButton, "Начать захват");
@@ -82,10 +76,6 @@ namespace Shell
         {
             if (e.CloseReason == ToolStripDropDownCloseReason.ItemClicked)
                 e.Cancel = true;
-        }
-        private void UdpSessionNotify(object sender, UdpStreamArivedEventArgs e)
-        {
-            /*MessageBox.Show("UdpSessionArrivedEvent");*/
         }
         private void PacketGridInvalidate(object sender, EventArgs e)
         {

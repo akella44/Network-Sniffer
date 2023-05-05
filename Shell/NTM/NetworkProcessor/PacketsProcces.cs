@@ -38,38 +38,26 @@ namespace NTM
         {
             Device.Open(DeviceModes.Promiscuous, 1000);
             Device.OnPacketArrival += AddPacketToQueue;
-            StartPacketProcessingThread();
+            await Task.Run(() => StartPacketProcessingThread());
             Device.StartCapture();
         }
 
-        /*private void WaitForStopSniffingSignal(CancellationToken ct)
-        {
-            while (true)
-            {
-                Thread.Sleep(1000);
-
-                if (ct.IsCancellationRequested)
-                {
-                    break;
-                }
-            }
-        }*/
-
-        private async Task StartPacketProcessingThread()
+        private void StartPacketProcessingThread()
         {
             _cts = new CancellationTokenSource();
             var ct = _cts.Token;
-            /*_packetProcessingTask = new Task(() => ProcessPaketsFromQueue(ct), ct);
-            _packetProcessingTask.Start();*/
-            await Task.Run(() => ProcessPaketsFromQueue(ct), ct);
+            _packetProcessingTask = new Task(() => ProcessPaketsFromQueue(ct), ct);
+            _packetProcessingTask.Start();
+            /*await Task.Run(() => ProcessPaketsFromQueue(ct), ct);*/
         }
-        public /*async*/ void StopPacketProcessing()
+        public async Task StopPacketProcessing()
         {
             _cts.Cancel();
+            await _packetProcessingTask.ConfigureAwait(false);
             Device.StopCapture();
             Device.Close();
-            /*HandleUnfinishedSessions();*/
-            /*await*/ _udpHandler.HandleUnfinishedUdpSessions();
+            await Task.Run(() => _udpHandler.HandleUnfinishedUdpSessions());
+            await Task.Run(() => _tcpHandler.HandleUnfinishedTcpSessions());
         }
 
         private void AddPacketToQueue(object sender, PacketCapture e)
@@ -89,19 +77,6 @@ namespace NTM
             _udpHandler.UdpProcess(packet);
         }
 
-
-        /*private void HandleUnfinishedSessions()
-        {
-            _tcpSessionsBuilder.Sessions.AsParallel().ForAll(session => TcpSessionArrived?.Invoke(this, new TcpSessionArivedEventArgs()
-            {
-                TcpSession = session
-            }));
-
-            _udpStreamBuilder.Sessions.AsParallel().ForAll(session => UdpSessionArrived?.Invoke(this, new UdpSessionArrivedEventArgs()
-            {
-                UdpSession = session
-            }));
-        }*/
         private void ProcessPaketsFromQueue(CancellationToken ct)
         {
             while (true)

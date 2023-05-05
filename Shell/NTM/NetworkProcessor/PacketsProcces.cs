@@ -63,13 +63,13 @@ namespace NTM
             _packetProcessingTask.Start();*/
             await Task.Run(() => ProcessPaketsFromQueue(ct), ct);
         }
-        public void StopPacketProcessing()
+        public /*async*/ void StopPacketProcessing()
         {
             _cts.Cancel();
             Device.StopCapture();
             Device.Close();
             /*HandleUnfinishedSessions();*/
-            _udpHandler.HandleUnfinishedUdpSessions();
+            /*await*/ _udpHandler.HandleUnfinishedUdpSessions();
         }
 
         private void AddPacketToQueue(object sender, PacketCapture e)

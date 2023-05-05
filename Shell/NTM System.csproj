@@ -131,7 +131,8 @@
     <Compile Include="NTM\NetworkProcessor\PacketsProcessor\UdpPacketHandler.cs" />
     <Compile Include="NTM\NetworkProcessor\PacketsProcessor\UdpStreamBuilder.cs" />
     <Compile Include="NTM\Program.cs" />
-    <Compile Include="NTM\Statistics\CsvTempWriter.cs" />
+    <Compile Include="NTM\CsvWorker\TempCsvCore.cs" />
+    <Compile Include="NTM\CsvWorker\CsvTempWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="NTM\CommonUi\NetDeviceSelect.resx">
       <DependentUpon>NetDeviceSelect.cs</DependentUpon>

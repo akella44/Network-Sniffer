@@ -20,7 +20,9 @@ using System.Windows.Markup;
 using System.Runtime.Remoting.Contexts;
 using System.Linq.Expressions;
 using Shell.NTM.Statistics;
-
+using System.Globalization;
+using System.IO;
+using System.Runtime.InteropServices.ComTypes;
 namespace Shell
 {
     public partial class PacketMonitoring : Form
@@ -30,6 +32,7 @@ namespace Shell
         private Task _sniffing;
         private List<NetworkPacket> PacketsView;
 
+        private TempCsvCore _csvProcessor;
         /*private CsvTempWriter _statProcessor;*/
         public PacketMonitoring(ILiveDevice device)
         {
@@ -42,6 +45,8 @@ namespace Shell
 
             _snif = new PacketsProcces(device);
             _snif.StartSniff();
+
+            _csvProcessor = new TempCsvCore();
 
             sessionsToolStripMenuItem.DropDown.Closing += checkedItems_MenuUnclosing;
             paketsToolStripMenuItem.DropDown.Closing += checkedItems_MenuUnclosing;
@@ -61,12 +66,13 @@ namespace Shell
             startButton.Click += strartButton_OnClick;
             stopButton.Click += stopButton_OnClick;
 
-            udpToolStripMenuItem.ShowDropDown();
+            udpSessionToolStripMenuItem.ShowDropDown();
 
             ToolTip startToolTip = new ToolTip();
             startToolTip.SetToolTip(startButton, "Начать захват");
             ToolTip stopToolTip = new ToolTip();
             startToolTip.SetToolTip(stopButton, "Приостановить захват");
+
         }
 
         private void checkedItems_MenuUnclosing(object sender, ToolStripDropDownClosingEventArgs e)
@@ -120,22 +126,61 @@ namespace Shell
 
         }
 
-        private void udpToolStripMenuItem_ChekedChanged(object sender, EventArgs e)
+        private void udpSessionToolStripMenuItem_ChekedChanged(object sender, EventArgs e)
         {
-            CsvTempWriter<UdpSession, UdpStreamArivedEventArgs> udpSessionCsv = new CsvTempWriter<UdpSession, UdpStreamArivedEventArgs>();
-            if (udpToolStripMenuItem.Checked)
+            if (udpSessionToolStripMenuItem.Checked)
             {
-                udpSessionCsv.InitTempFile();
-                _snif._udpHandler.UdpSessionArrived += udpSessionCsv.AddObjToTempCsvFile;
+                _csvProcessor.UdpSessionCsv.InitTempFile();
+                _snif._udpHandler.UdpSessionArrived += _csvProcessor.UdpSessionCsv.AddObjToTempCsvFile;
             }
             else
             {
-                _snif._udpHandler.UdpSessionArrived -= udpSessionCsv.AddObjToTempCsvFile;
-                udpSessionCsv.Dispose();
+                _snif._udpHandler.UdpSessionArrived -= _csvProcessor.UdpSessionCsv.AddObjToTempCsvFile;
+                _csvProcessor.UdpSessionCsv.Dispose();
             }
         }
-        
-        
+
+        private void tcpSessionToolStripMenuItem_ChekedChanged(object sender, EventArgs e)
+        {
+            if (tcpSessionToolStripMenuItem.Checked)
+            {
+                _csvProcessor.TcpSessionCsv.InitTempFile();
+                _snif._tcpHandler.TcpSessionArrived += _csvProcessor.TcpSessionCsv.AddObjToTempCsvFile;
+            }
+            else
+            {
+                _snif._tcpHandler.TcpSessionArrived -= _csvProcessor.TcpSessionCsv.AddObjToTempCsvFile;
+                _csvProcessor.TcpSessionCsv.Dispose();
+            }
+        }
+
+        private void udpPacketToolStripMenuItem_ChekedChanged(object sender, EventArgs e)
+        {
+            if (udpSessionToolStripMenuItem.Checked)
+            {
+                _csvProcessor.UdpPacketCsv.InitTempFile();
+                _snif._udpHandler.UdpPacketArived += _csvProcessor.UdpPacketCsv.AddObjToTempCsvFile;
+            }
+            else
+            {
+                _snif._udpHandler.UdpPacketArived -= _csvProcessor.UdpPacketCsv.AddObjToTempCsvFile;
+                _csvProcessor.UdpPacketCsv.Dispose();
+            }
+        }
+
+        private void tcpPacketToolStripMenuItem_ChekedChanged(object sender, EventArgs e)
+        {
+            if (tcpPacketToolStripMenuItem.Checked)
+            {
+                _csvProcessor.TcpPacketCsv.InitTempFile();
+                _snif._tcpHandler.TcpPacketArived += _csvProcessor.TcpPacketCsv.AddObjToTempCsvFile;
+            }
+            else
+            {
+                _snif._tcpHandler.TcpPacketArived -= _csvProcessor.TcpPacketCsv.AddObjToTempCsvFile;
+                _csvProcessor.TcpPacketCsv.Dispose();
+            }
+        }
         private void PacketMonitoring_Load(object sender, EventArgs e)
         {
 
@@ -178,6 +223,11 @@ namespace Shell
         private void udpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void udpSessionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

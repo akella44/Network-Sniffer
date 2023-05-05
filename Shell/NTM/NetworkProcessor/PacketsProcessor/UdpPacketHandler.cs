@@ -6,14 +6,16 @@ using NTM.Objects;
 using NTM.PacketsProcessor;
 using PacketDotNet;
 using NTM.Event_Args;
+using System.Threading.Tasks;
 namespace NTM.PacketsProcessor
 {
     public class UdpPacketHandler
     {
-        public delegate void UdpPacketArivedEventHandler(object sender, UdpPacketArivedEventArgs e);
-        public event UdpPacketArivedEventHandler UdpPacketArived;
-        public delegate void UdpSessionArrivedEventHandler(object sender, UdpStreamArivedEventArgs e);
-        public event UdpSessionArrivedEventHandler UdpSessionArrived;
+        /*public delegate void UdpPacketArivedEventHandler(object sender, UdpPacketArivedEventArgs e);*/
+        public event EventHandler<UdpPacketArivedEventArgs> UdpPacketArived;
+        /*public delegate void UdpSessionArrivedEventHandler(object sender, UdpStreamArivedEventArgs e);*/
+        public event EventHandler<UdpStreamArivedEventArgs> UdpSessionArrived;
+
         private UdpStreamBuilder _udpStreamBuilder;
         public UdpPacketHandler() 
         {
@@ -64,7 +66,7 @@ namespace NTM.PacketsProcessor
             }
         }
 
-        public void HandleUnfinishedUdpSessions()
+        public /*async Task*/ void HandleUnfinishedUdpSessions()
         {
             _udpStreamBuilder.Sessions.AsParallel().ForAll(session => UdpSessionArrived?.Invoke(this, new UdpStreamArivedEventArgs
             {

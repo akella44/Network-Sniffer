@@ -14,7 +14,7 @@ using System.Windows.Markup;
 
 namespace Shell.NTM.Statistics
 {
-    public class CsvTempWriter<T, H> /*: IDisposable where T : class*/
+    public class CsvTempWriter<T, H> : IDisposable where T : class
     {
         public string FileName { get; private set; }
         public CsvTempWriter()

@@ -149,7 +149,7 @@ namespace Shell
 
         private void udpPacketToolStripMenuItem_ChekedChanged(object sender, EventArgs e)
         {
-            if (udpSessionToolStripMenuItem.Checked)
+            if (udpPacketToolStripMenuItem.Checked)
             {
                 _csvProcessor.UdpPacketCsv.InitTempFile();
                 _snif._udpHandler.UdpPacketArived += _csvProcessor.UdpPacketCsv.AddObjToTempCsvFile;
@@ -238,5 +238,6 @@ namespace Shell
                 _csvProcessor.UdpPacketCsv.FileInfo.CopyTo(filename);
             }
         }
+
     }
 }

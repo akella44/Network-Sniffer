@@ -37,6 +37,7 @@ namespace NTM.PacketsProcessor
 
         public UdpStreamBuilder()
         {
+            completedSessions = new List<UdpSession>();
             _sessions = new List<UdpSession>();
         }
 

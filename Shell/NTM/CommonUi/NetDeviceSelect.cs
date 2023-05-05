@@ -67,10 +67,5 @@ namespace Shell
         {
 
         }
-
-        private void FAQButton_Click(object sender, EventArgs e)
-        {
-                MessageBox.Show("Выберите устройтсво, с которого будет считываться сетевой трафик.");
-        }
     }
 }

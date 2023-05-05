@@ -53,7 +53,7 @@ namespace NTM
         public async Task StopPacketProcessing()
         {
             _cts.Cancel();
-            await _packetProcessingTask.ConfigureAwait(false);
+            /*await _packetProcessingTask.ConfigureAwait(false);*/
             Device.StopCapture();
             Device.Close();
             await Task.Run(() => _udpHandler.HandleUnfinishedUdpSessions());

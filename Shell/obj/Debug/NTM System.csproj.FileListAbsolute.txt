@@ -32,3 +32,37 @@ C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\CsvHelper.xml
 C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\Microsoft.Bcl.HashCode.xml
 C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\Shell.exe.config
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\Shell.exe
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\Shell.pdb
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\CsvHelper.dll
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\Microsoft.Bcl.HashCode.dll
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\PacketDotNet.dll
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\SharpPcap.dll
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\System.Buffers.dll
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\System.Memory.dll
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\System.Text.Encoding.CodePages.dll
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\CsvHelper.xml
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\Microsoft.Bcl.HashCode.xml
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\System.Buffers.xml
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\System.Memory.xml
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\System.Text.Encoding.CodePages.xml
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\obj\Debug\NTM System.csproj.AssemblyReference.cache
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\obj\Debug\NTM System.csproj.SuggestedBindingRedirects.cache
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\obj\Debug\Shell.exe.config
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\obj\Debug\Shell.NetDeviceSelect.resources
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\obj\Debug\Shell.PacketMonitoring.resources
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\obj\Debug\Shell.Properties.Resources.resources
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\obj\Debug\NTM System.csproj.GenerateResource.cache
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\obj\Debug\NTM System.csproj.CoreCompileInputs.cache
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\obj\Debug\NTM System.csproj.CopyComplete
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\obj\Debug\Shell.exe
+C:\Users\MrZlodeyOff\source\repos\Shell\Shell\obj\Debug\Shell.pdb

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PacketMonitoring));
             this.packetDataGrid = new System.Windows.Forms.DataGridView();
             this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +54,7 @@
             this.filterTextBox = new System.Windows.Forms.TextBox();
             this.scrollDown = new System.Windows.Forms.CheckBox();
             this.saveCsvFilesDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.Autorewind_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.packetDataGrid)).BeginInit();
             this.ContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +67,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.packetDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.packetDataGrid.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.packetDataGrid.BackgroundColor = System.Drawing.SystemColors.Control;
             this.packetDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.packetDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.packetDataGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -79,6 +81,7 @@
             this.Proctocol,
             this.Lenght});
             this.packetDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.packetDataGrid.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.packetDataGrid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.packetDataGrid.Location = new System.Drawing.Point(0, 101);
             this.packetDataGrid.Name = "packetDataGrid";
@@ -163,6 +166,7 @@
             // 
             // ContextMenuStrip
             // 
+            this.ContextMenuStrip.BackColor = System.Drawing.SystemColors.Control;
             this.ContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
             this.statisticsMenu});
@@ -178,20 +182,20 @@
             this.saveFilesToolStripMenuItem,
             this.показатьТекущиеTempФайлыToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
             // saveFilesToolStripMenuItem
             // 
             this.saveFilesToolStripMenuItem.Name = "saveFilesToolStripMenuItem";
-            this.saveFilesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+            this.saveFilesToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
             this.saveFilesToolStripMenuItem.Text = "Сохранить CSV файлы";
             this.saveFilesToolStripMenuItem.Click += new System.EventHandler(this.saveFilesToolStripMenuItem_Click);
             // 
             // показатьТекущиеTempФайлыToolStripMenuItem
             // 
             this.показатьТекущиеTempФайлыToolStripMenuItem.Name = "показатьТекущиеTempФайлыToolStripMenuItem";
-            this.показатьТекущиеTempФайлыToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+            this.показатьТекущиеTempФайлыToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
             this.показатьТекущиеTempФайлыToolStripMenuItem.Text = "Показать текущие temp файлы";
             // 
             // statisticsMenu
@@ -199,7 +203,7 @@
             this.statisticsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.formOfCaptureDataToolStripMenuItem});
             this.statisticsMenu.Name = "statisticsMenu";
-            this.statisticsMenu.Size = new System.Drawing.Size(80, 20);
+            this.statisticsMenu.Size = new System.Drawing.Size(83, 20);
             this.statisticsMenu.Text = "Статистика";
             // 
             // formOfCaptureDataToolStripMenuItem
@@ -208,7 +212,7 @@
             this.sessionsToolStripMenuItem,
             this.paketsToolStripMenuItem});
             this.formOfCaptureDataToolStripMenuItem.Name = "formOfCaptureDataToolStripMenuItem";
-            this.formOfCaptureDataToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.formOfCaptureDataToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.formOfCaptureDataToolStripMenuItem.Text = "Формат захвата данных";
             // 
             // sessionsToolStripMenuItem
@@ -217,14 +221,14 @@
             this.udpSessionToolStripMenuItem,
             this.tcpSessionToolStripMenuItem});
             this.sessionsToolStripMenuItem.Name = "sessionsToolStripMenuItem";
-            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.sessionsToolStripMenuItem.Text = "Сессии";
             // 
             // udpSessionToolStripMenuItem
             // 
             this.udpSessionToolStripMenuItem.CheckOnClick = true;
             this.udpSessionToolStripMenuItem.Name = "udpSessionToolStripMenuItem";
-            this.udpSessionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.udpSessionToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
             this.udpSessionToolStripMenuItem.Text = "Udp";
             this.udpSessionToolStripMenuItem.CheckedChanged += new System.EventHandler(this.udpSessionToolStripMenuItem_ChekedChanged);
             // 
@@ -232,7 +236,7 @@
             // 
             this.tcpSessionToolStripMenuItem.CheckOnClick = true;
             this.tcpSessionToolStripMenuItem.Name = "tcpSessionToolStripMenuItem";
-            this.tcpSessionToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.tcpSessionToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
             this.tcpSessionToolStripMenuItem.Text = "Tcp";
             this.tcpSessionToolStripMenuItem.CheckedChanged += new System.EventHandler(this.tcpSessionToolStripMenuItem_ChekedChanged);
             // 
@@ -242,14 +246,14 @@
             this.udpPacketToolStripMenuItem,
             this.tcpPacketToolStripMenuItem});
             this.paketsToolStripMenuItem.Name = "paketsToolStripMenuItem";
-            this.paketsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.paketsToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.paketsToolStripMenuItem.Text = "Пакеты";
             // 
             // udpPacketToolStripMenuItem
             // 
             this.udpPacketToolStripMenuItem.CheckOnClick = true;
             this.udpPacketToolStripMenuItem.Name = "udpPacketToolStripMenuItem";
-            this.udpPacketToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.udpPacketToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
             this.udpPacketToolStripMenuItem.Text = "Udp";
             this.udpPacketToolStripMenuItem.CheckedChanged += new System.EventHandler(this.udpPacketToolStripMenuItem_ChekedChanged);
             // 
@@ -257,7 +261,7 @@
             // 
             this.tcpPacketToolStripMenuItem.CheckOnClick = true;
             this.tcpPacketToolStripMenuItem.Name = "tcpPacketToolStripMenuItem";
-            this.tcpPacketToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.tcpPacketToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
             this.tcpPacketToolStripMenuItem.Text = "Tcp";
             this.tcpPacketToolStripMenuItem.CheckedChanged += new System.EventHandler(this.tcpPacketToolStripMenuItem_ChekedChanged);
             // 
@@ -265,6 +269,7 @@
             // 
             this.filterTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterTextBox.BackColor = System.Drawing.SystemColors.Menu;
             this.filterTextBox.Location = new System.Drawing.Point(12, 66);
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(984, 20);
@@ -280,19 +285,30 @@
             this.scrollDown.TabIndex = 5;
             this.scrollDown.UseVisualStyleBackColor = true;
             // 
+            // Autorewind_label
+            // 
+            this.Autorewind_label.AutoSize = true;
+            this.Autorewind_label.Location = new System.Drawing.Point(894, 45);
+            this.Autorewind_label.Name = "Autorewind_label";
+            this.Autorewind_label.Size = new System.Drawing.Size(86, 13);
+            this.Autorewind_label.TabIndex = 6;
+            this.Autorewind_label.Text = "Автоперемотка";
+            // 
             // PacketMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(1008, 601);
+            this.Controls.Add(this.Autorewind_label);
             this.Controls.Add(this.scrollDown);
             this.Controls.Add(this.filterTextBox);
             this.Controls.Add(this.packetDataGrid);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.ContextMenuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.ContextMenuStrip;
             this.MinimumSize = new System.Drawing.Size(1024, 640);
             this.Name = "PacketMonitoring";
@@ -332,5 +348,6 @@
         private System.Windows.Forms.ToolStripMenuItem saveFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem показатьТекущиеTempФайлыToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveCsvFilesDialog1;
+        private System.Windows.Forms.Label Autorewind_label;
     }
 }

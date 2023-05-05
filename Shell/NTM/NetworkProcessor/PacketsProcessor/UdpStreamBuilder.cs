@@ -63,7 +63,7 @@ namespace NTM.PacketsProcessor
             {
                 if ((session.Packets[_sessions.Count - 1].SentTime - session.SentTime).TotalSeconds > 5)
                 {
-                    foreach (var currentUdpPacket in _sessions[_indexOfCurrentSession].Packets)
+                    /*foreach (var currentUdpPacket in _sessions[_indexOfCurrentSession].Packets)
                     {
 
                         currentSession.Packets.Add(new NTM.Objects.UdpPacket()
@@ -75,9 +75,9 @@ namespace NTM.PacketsProcessor
                             Data = currentUdpPacket.Data,
                             SentTime = currentUdpPacket.SentTime
                         });
-                    }
-                    completedSessions.Add(session);
-                    _sessions.Remove(session);
+                    }*/
+                    /*completedSessions.Add(session);
+                    _sessions.Remove(session);*/
                 }
             }
         }

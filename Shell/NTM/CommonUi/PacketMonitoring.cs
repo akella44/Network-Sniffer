@@ -33,7 +33,7 @@ namespace Shell
         private List<NetworkPacket> PacketsView;
 
         private TempCsvCore _csvProcessor;
-        /*private CsvTempWriter _statProcessor;*/
+
         public PacketMonitoring(ILiveDevice device)
         {
             _cts = new CancellationTokenSource();
@@ -41,6 +41,9 @@ namespace Shell
 
             InitializeComponent();
             packetDataGrid.VirtualMode = true;
+
+            saveCsvFilesDialog1.DefaultExt = ".csv";
+            
             typeof(Control).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).SetValue(packetDataGrid, true, null);
 
             _snif = new PacketsProcces(device);
@@ -66,13 +69,13 @@ namespace Shell
             startButton.Click += strartButton_OnClick;
             stopButton.Click += stopButton_OnClick;
 
-            udpSessionToolStripMenuItem.ShowDropDown();
 
             ToolTip startToolTip = new ToolTip();
             startToolTip.SetToolTip(startButton, "Начать захват");
             ToolTip stopToolTip = new ToolTip();
             startToolTip.SetToolTip(stopButton, "Приостановить захват");
-
+            ToolTip scrollDownToolTip = new ToolTip();
+            scrollDownToolTip.SetToolTip(scrollDown, "Проматывать бесконечно вниз");
         }
 
         private void checkedItems_MenuUnclosing(object sender, ToolStripDropDownClosingEventArgs e)
@@ -119,11 +122,11 @@ namespace Shell
                 case 5: e.Value = PacketsView[e.RowIndex].Protocol; break;
                 case 6: e.Value = PacketsView[e.RowIndex].Data.Length; break;
             }
-            if (ScrollDown.Checked)
+            if (scrollDown.Checked)
             {
                 packetDataGrid.FirstDisplayedScrollingRowIndex = packetDataGrid.RowCount - 1;
             }
-
+            
         }
 
         private void udpSessionToolStripMenuItem_ChekedChanged(object sender, EventArgs e)
@@ -181,10 +184,7 @@ namespace Shell
                 _csvProcessor.TcpPacketCsv.Dispose();
             }
         }
-        private void PacketMonitoring_Load(object sender, EventArgs e)
-        {
 
-        }
 
         private void strartButton_OnClick(object sender, EventArgs e)
         {
@@ -206,28 +206,48 @@ namespace Shell
             Close();
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void saveFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (File.Exists(_csvProcessor.UdpSessionCsv.FileName))
+            {
+                if (saveCsvFilesDialog1.ShowDialog() == DialogResult.Cancel)
+                {
+                    return;
+                }
+                string filename = saveCsvFilesDialog1.FileName;
+                _csvProcessor.UdpSessionCsv.FileInfo.CopyTo(filename);
+            }
 
+            if (File.Exists(_csvProcessor.TcpSessionCsv.FileName))
+            {
+                if (saveCsvFilesDialog1.ShowDialog() == DialogResult.Cancel)
+                {
+                    return;
+                }
+                string filename = saveCsvFilesDialog1.FileName;
+                _csvProcessor.TcpSessionCsv.FileInfo.CopyTo(filename);
+            }
+
+            if (File.Exists(_csvProcessor.TcpPacketCsv.FileName))
+            {
+                if (saveCsvFilesDialog1.ShowDialog() == DialogResult.Cancel)
+                {
+                    return;
+                }
+                string filename = saveCsvFilesDialog1.FileName;
+                _csvProcessor.TcpPacketCsv.FileInfo.CopyTo(filename);
+            }
+
+            if (File.Exists(_csvProcessor.UdpPacketCsv.FileName))
+            {
+                if (saveCsvFilesDialog1.ShowDialog() == DialogResult.Cancel)
+                {
+                    return;
+                }
+                string filename = saveCsvFilesDialog1.FileName;
+                _csvProcessor.UdpPacketCsv.FileInfo.CopyTo(filename);
+            }
         }
-        private void formOfCaptureDataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void statisticsMenu_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void udpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void udpSessionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

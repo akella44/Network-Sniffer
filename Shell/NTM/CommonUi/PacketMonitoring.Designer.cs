@@ -40,7 +40,8 @@
             this.startButton = new System.Windows.Forms.Button();
             this.ContextMenuStrip = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.показатьТекущиеTempФайлыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statisticsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.formOfCaptureDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,8 +51,8 @@
             this.udpPacketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tcpPacketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterTextBox = new System.Windows.Forms.TextBox();
-            this.ScrollDown = new System.Windows.Forms.CheckBox();
-            this.PathTextBox = new System.Windows.Forms.TextBox();
+            this.scrollDown = new System.Windows.Forms.CheckBox();
+            this.saveCsvFilesDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.packetDataGrid)).BeginInit();
             this.ContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -168,21 +169,28 @@
             this.ContextMenuStrip.Size = new System.Drawing.Size(1008, 24);
             this.ContextMenuStrip.TabIndex = 3;
             this.ContextMenuStrip.Text = "Menu";
-            this.ContextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // файлToolStripMenuItem
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.сохранитьToolStripMenuItem});
+            this.saveFilesToolStripMenuItem,
+            this.показатьТекущиеTempФайлыToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
-            // сохранитьToolStripMenuItem
+            // saveFilesToolStripMenuItem
             // 
-            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            this.saveFilesToolStripMenuItem.Name = "saveFilesToolStripMenuItem";
+            this.saveFilesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+            this.saveFilesToolStripMenuItem.Text = "Сохранить CSV файлы";
+            this.saveFilesToolStripMenuItem.Click += new System.EventHandler(this.saveFilesToolStripMenuItem_Click);
+            // 
+            // показатьТекущиеTempФайлыToolStripMenuItem
+            // 
+            this.показатьТекущиеTempФайлыToolStripMenuItem.Name = "показатьТекущиеTempФайлыToolStripMenuItem";
+            this.показатьТекущиеTempФайлыToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+            this.показатьТекущиеTempФайлыToolStripMenuItem.Text = "Показать текущие temp файлы";
             // 
             // statisticsMenu
             // 
@@ -191,7 +199,6 @@
             this.statisticsMenu.Name = "statisticsMenu";
             this.statisticsMenu.Size = new System.Drawing.Size(80, 20);
             this.statisticsMenu.Text = "Статистика";
-            this.statisticsMenu.Click += new System.EventHandler(this.statisticsMenu_Click);
             // 
             // formOfCaptureDataToolStripMenuItem
             // 
@@ -201,7 +208,6 @@
             this.formOfCaptureDataToolStripMenuItem.Name = "formOfCaptureDataToolStripMenuItem";
             this.formOfCaptureDataToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.formOfCaptureDataToolStripMenuItem.Text = "Формат захвата данных";
-            this.formOfCaptureDataToolStripMenuItem.Click += new System.EventHandler(this.formOfCaptureDataToolStripMenuItem_Click);
             // 
             // sessionsToolStripMenuItem
             // 
@@ -219,13 +225,12 @@
             this.udpSessionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.udpSessionToolStripMenuItem.Text = "Udp";
             this.udpSessionToolStripMenuItem.CheckedChanged += new System.EventHandler(this.udpSessionToolStripMenuItem_ChekedChanged);
-            this.udpSessionToolStripMenuItem.Click += new System.EventHandler(this.udpSessionToolStripMenuItem_Click);
             // 
             // tcpSessionToolStripMenuItem
             // 
             this.tcpSessionToolStripMenuItem.CheckOnClick = true;
             this.tcpSessionToolStripMenuItem.Name = "tcpSessionToolStripMenuItem";
-            this.tcpSessionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tcpSessionToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
             this.tcpSessionToolStripMenuItem.Text = "Tcp";
             this.tcpSessionToolStripMenuItem.CheckedChanged += new System.EventHandler(this.tcpSessionToolStripMenuItem_ChekedChanged);
             // 
@@ -242,7 +247,7 @@
             // 
             this.udpPacketToolStripMenuItem.CheckOnClick = true;
             this.udpPacketToolStripMenuItem.Name = "udpPacketToolStripMenuItem";
-            this.udpPacketToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.udpPacketToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
             this.udpPacketToolStripMenuItem.Text = "Udp";
             this.udpPacketToolStripMenuItem.CheckedChanged += new System.EventHandler(this.udpPacketToolStripMenuItem_ChekedChanged);
             // 
@@ -250,7 +255,7 @@
             // 
             this.tcpPacketToolStripMenuItem.CheckOnClick = true;
             this.tcpPacketToolStripMenuItem.Name = "tcpPacketToolStripMenuItem";
-            this.tcpPacketToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tcpPacketToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
             this.tcpPacketToolStripMenuItem.Text = "Tcp";
             this.tcpPacketToolStripMenuItem.CheckedChanged += new System.EventHandler(this.tcpPacketToolStripMenuItem_ChekedChanged);
             // 
@@ -263,23 +268,15 @@
             this.filterTextBox.Size = new System.Drawing.Size(984, 20);
             this.filterTextBox.TabIndex = 4;
             // 
-            // ScrollDown
+            // scrollDown
             // 
-            this.ScrollDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ScrollDown.AutoSize = true;
-            this.ScrollDown.Location = new System.Drawing.Point(981, 46);
-            this.ScrollDown.Name = "ScrollDown";
-            this.ScrollDown.Size = new System.Drawing.Size(15, 14);
-            this.ScrollDown.TabIndex = 5;
-            this.ScrollDown.UseVisualStyleBackColor = true;
-            // 
-            // PathTextBox
-            // 
-            this.PathTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PathTextBox.Location = new System.Drawing.Point(0, 581);
-            this.PathTextBox.Name = "PathTextBox";
-            this.PathTextBox.Size = new System.Drawing.Size(1008, 20);
-            this.PathTextBox.TabIndex = 6;
+            this.scrollDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.scrollDown.AutoSize = true;
+            this.scrollDown.Location = new System.Drawing.Point(981, 46);
+            this.scrollDown.Name = "scrollDown";
+            this.scrollDown.Size = new System.Drawing.Size(15, 14);
+            this.scrollDown.TabIndex = 5;
+            this.scrollDown.UseVisualStyleBackColor = true;
             // 
             // PacketMonitoring
             // 
@@ -288,8 +285,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(1008, 601);
-            this.Controls.Add(this.PathTextBox);
-            this.Controls.Add(this.ScrollDown);
+            this.Controls.Add(this.scrollDown);
             this.Controls.Add(this.filterTextBox);
             this.Controls.Add(this.packetDataGrid);
             this.Controls.Add(this.stopButton);
@@ -315,8 +311,7 @@
         private System.Windows.Forms.ToolStripMenuItem statisticsMenu;
         public System.Windows.Forms.DataGridView packetDataGrid;
         private System.Windows.Forms.TextBox filterTextBox;
-        private System.Windows.Forms.CheckBox ScrollDown;
-        private System.Windows.Forms.TextBox PathTextBox;
+        private System.Windows.Forms.CheckBox scrollDown;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Source;
         private System.Windows.Forms.DataGridViewTextBoxColumn SourcePort;
@@ -332,6 +327,8 @@
         private System.Windows.Forms.ToolStripMenuItem paketsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem udpPacketToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tcpPacketToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem показатьТекущиеTempФайлыToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveCsvFilesDialog1;
     }
 }

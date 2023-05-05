@@ -17,9 +17,11 @@ namespace Shell.NTM.Statistics
     public class CsvTempWriter<T, H> : IDisposable where T : class
     {
         public string FileName { get; private set; }
+        public FileInfo FileInfo { get; private set; }
         public CsvTempWriter()
         {
             FileName = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".csv";
+            FileInfo = new FileInfo(FileName);
         }
 
         public void InitTempFile()

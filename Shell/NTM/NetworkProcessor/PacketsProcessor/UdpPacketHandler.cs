@@ -7,19 +7,20 @@ using NTM.PacketsProcessor;
 using PacketDotNet;
 using NTM.Event_Args;
 using System.Threading.Tasks;
+using System.Threading;
+using System.Windows.Forms;
 namespace NTM.PacketsProcessor
 {
     public class UdpPacketHandler
     {
         public event EventHandler<UdpPacketArivedEventArgs> UdpPacketArived;
         public event EventHandler<UdpStreamArivedEventArgs> UdpSessionArrived;
-
         private UdpStreamBuilder _udpStreamBuilder;
+
         public UdpPacketHandler() 
         {
             _udpStreamBuilder = new UdpStreamBuilder();
         }
-
         public void UdpProcess(PacketDotNet.Packet packet)
         {
             try
@@ -47,15 +48,24 @@ namespace NTM.PacketsProcessor
                     });
 
                     this._udpStreamBuilder.HandlePacket(Packet);
-                    /*this._udpStreamBuilder.Validate();*/
-                    _udpStreamBuilder.completedSessions.AsParallel().ForAll((session) =>
+                    foreach (var session in _udpStreamBuilder._sessions)
+                    {
+                        if ((session.Packets[session.Packets.Count - 1].SentTime - session.Packets[session.Packets.Count - 2].SentTime).TotalMinutes > 2)
+                        {
+                            UdpSessionArrived?.Invoke(this, new UdpStreamArivedEventArgs()
+                            {
+                                UdpSession = session
+                            });
+                        }
+                    }
+                    /*_udpStreamBuilder.completedSessions.AsParallel().ForAll((session) =>
                     {
                         UdpSessionArrived?.Invoke(this, new UdpStreamArivedEventArgs()
                         {
                             UdpSession = session
                         });
                         _udpStreamBuilder.completedSessions.Remove(session);
-                    });
+                    });*/
                 }
             }
             catch (Exception ex)
@@ -64,12 +74,14 @@ namespace NTM.PacketsProcessor
             }
         }
 
-        public /*async Task*/ void HandleUnfinishedUdpSessions()
+        public async Task HandleUnfinishedUdpSessions()
         {
-            _udpStreamBuilder.Sessions.AsParallel().ForAll(session => UdpSessionArrived?.Invoke(this, new UdpStreamArivedEventArgs
-            {
-                UdpSession = session
-            }));
+            await Task.Run(() => {
+                _udpStreamBuilder.Sessions.AsParallel().ForAll(session => UdpSessionArrived?.Invoke(this, new UdpStreamArivedEventArgs
+                {
+                    UdpSession = session
+                }));
+            });
         }
     }
 }

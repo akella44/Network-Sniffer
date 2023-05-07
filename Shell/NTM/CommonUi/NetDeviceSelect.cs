@@ -57,15 +57,5 @@ namespace Shell
             Hide();
             packetMonitoring.Show();
         }
-
-        private void DevicesList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
     }
 }

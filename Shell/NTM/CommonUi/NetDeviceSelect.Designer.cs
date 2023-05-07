@@ -47,7 +47,6 @@
             this.devicesList.Name = "devicesList";
             this.devicesList.Size = new System.Drawing.Size(669, 450);
             this.devicesList.TabIndex = 1;
-            this.devicesList.SelectedIndexChanged += new System.EventHandler(this.DevicesList_SelectedIndexChanged);
             // 
             // deviceSelectText
             // 
@@ -59,7 +58,6 @@
             this.deviceSelectText.Size = new System.Drawing.Size(248, 18);
             this.deviceSelectText.TabIndex = 0;
             this.deviceSelectText.Text = "Выберите устройство для захвата";
-            this.deviceSelectText.Click += new System.EventHandler(this.DevicesList_DoubleClick);
             // 
             // groupBox1
             // 
@@ -71,7 +69,6 @@
             this.groupBox1.Size = new System.Drawing.Size(1008, 601);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // NetDeviceSelect
             // 

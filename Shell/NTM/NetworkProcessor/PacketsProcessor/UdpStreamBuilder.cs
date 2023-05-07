@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Input;
 
@@ -14,8 +15,7 @@ namespace NTM.PacketsProcessor
     public class UdpStreamBuilder
     {
         public List<UdpSession> _sessions;
-        public List<UdpSession> completedSessions { get; set; }
-
+        public List<UdpSession> completedSessions;
         private int _indexOfCurrentSession;
         public IEnumerable<UdpSession> Sessions
         {
@@ -37,7 +37,6 @@ namespace NTM.PacketsProcessor
 
         public UdpStreamBuilder()
         {
-            completedSessions = new List<UdpSession>();
             _sessions = new List<UdpSession>();
         }
 
@@ -52,35 +51,15 @@ namespace NTM.PacketsProcessor
                 DestinationPort = udpPacket.DestinationPort,
             };
 
+
             if (!_sessions.AsParallel().Contains(currentSession))
             {
                 _sessions.Add(currentSession);
             }
-            
+
             _indexOfCurrentSession = _sessions.FindIndex(session => currentSession.Equals(session));
             _sessions[_indexOfCurrentSession].Packets.Add(udpPacket);
-
-            foreach (var session in _sessions)
-            {
-                if ((session.Packets[_sessions.Count - 1].SentTime - session.SentTime).TotalSeconds > 5)
-                {
-                    /*foreach (var currentUdpPacket in _sessions[_indexOfCurrentSession].Packets)
-                    {
-
-                        currentSession.Packets.Add(new NTM.Objects.UdpPacket()
-                        {
-                            SourceIp = currentUdpPacket.SourceIp,
-                            SourcePort = currentUdpPacket.SourcePort,
-                            DestinationIp = currentUdpPacket.DestinationIp,
-                            DestinationPort = currentUdpPacket.DestinationPort,
-                            Data = currentUdpPacket.Data,
-                            SentTime = currentUdpPacket.SentTime
-                        });
-                    }*/
-                    /*completedSessions.Add(session);
-                    _sessions.Remove(session);*/
-                }
-            }
+            
         }
 
         public void Clear()
@@ -88,15 +67,5 @@ namespace NTM.PacketsProcessor
             _sessions.Clear();
         }
 
-        /*public void Validate()
-        {
-            List<UdpSession> sessions = _sessions.FindAll(session => ((session.Packets[-1].SentTime - session.SentTime).Seconds > 10));
-            sessions.AsParallel().ForAll((session) =>
-            {
-                completedSessions.Add(session);
-                _sessions.Remove(session);
-            });
-
-        }*/
     }
 }

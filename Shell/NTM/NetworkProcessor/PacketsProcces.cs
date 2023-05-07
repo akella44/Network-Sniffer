@@ -34,7 +34,7 @@ namespace NTM
             _packetsQueueLock = new object();
         }
 
-        public async void StartSniff()
+        public async Task StartSniff()
         {
             Device.Open(DeviceModes.Promiscuous, 1000);
             Device.OnPacketArrival += AddPacketToQueue;
@@ -50,14 +50,16 @@ namespace NTM
             _packetProcessingTask.Start();
             /*await Task.Run(() => ProcessPaketsFromQueue(ct), ct);*/
         }
-        public async Task StopPacketProcessing()
+        public void StopPacketProcessing()
         {
             _cts.Cancel();
             /*await _packetProcessingTask.ConfigureAwait(false);*/
             Device.StopCapture();
             Device.Close();
-            await Task.Run(() => _udpHandler.HandleUnfinishedUdpSessions());
-            await Task.Run(() => _tcpHandler.HandleUnfinishedTcpSessions());
+            /*await Task.Run(() => */
+            _udpHandler.HandleUnfinishedUdpSessions();
+            /*await Task.Run(() => */
+            _tcpHandler.HandleUnfinishedTcpSessions();
         }
 
         private void AddPacketToQueue(object sender, PacketCapture e)

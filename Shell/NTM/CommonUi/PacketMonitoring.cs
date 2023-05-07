@@ -45,6 +45,7 @@ namespace Shell
             saveCsvFilesDialog1.DefaultExt = ".csv";
             
             typeof(Control).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).SetValue(packetDataGrid, true, null);
+            packetDataGrid.ReadOnly = true;
 
             _snif = new PacketsProcces(device);
             _snif.StartSniff();
@@ -62,6 +63,8 @@ namespace Shell
             _snif._tcpHandler.TcpPacketArived += AddTcpPacketToList;
             _snif._udpHandler.UdpPacketArived += AddUdpPacketToList;
 
+            _snif._udpHandler.UdpSessionArrived += UdpSess_Notify;
+
             startButton.Visible = false;
 
             ToolTip startToolTip = new ToolTip();
@@ -72,6 +75,10 @@ namespace Shell
             scrollDownToolTip.SetToolTip(scrollDown, "Проматывать бесконечно вниз");
         }
 
+        private void UdpSess_Notify(object sender, UdpStreamArivedEventArgs e)
+        {
+            MessageBox.Show("Udp Sess Arived");
+        }
         private void checkedItems_MenuUnclosing(object sender, ToolStripDropDownClosingEventArgs e)
         {
             if (e.CloseReason == ToolStripDropDownCloseReason.ItemClicked)
@@ -176,12 +183,12 @@ namespace Shell
         }
 
 
-        private void strartButton_OnClick(object sender, EventArgs e)
+        private async void strartButton_OnClick(object sender, EventArgs e)
         {
             stopButton.Visible = true;
             startButton.Visible = false;
             PacketsView.Clear();
-            _snif.StartSniff();
+            await _snif.StartSniff();
         }
 
         private void stopButton_OnClick(object sender, EventArgs e)
@@ -236,6 +243,10 @@ namespace Shell
                 }
                 string filename = saveCsvFilesDialog1.FileName;
                 _csvProcessor.UdpPacketCsv.FileInfo.CopyTo(filename);
+            }
+            else
+            {
+                MessageBox.Show("Csv файлов для сохранения не найдено");
             }
         }
 

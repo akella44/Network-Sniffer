@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using NTM.PacketsProcessor;
 using NTM.Event_Args;
+using System.Threading.Tasks;
+
 namespace NTM.PacketsProcessor
 {
     public class TcpPacketHandler
@@ -64,12 +66,15 @@ namespace NTM.PacketsProcessor
             }
         }
 
-        public void HandleUnfinishedTcpSessions()
+        public async Task /*void*/ HandleUnfinishedTcpSessions()
         {
-            _tcpSessionsBuilder.Sessions.AsParallel().ForAll(session => TcpSessionArrived?.Invoke(this, new TcpSessionArivedEventArgs()
-            {
-                TcpSession = session
-            }));
+            await Task.Run(() => {
+                _tcpSessionsBuilder.Sessions.AsParallel().ForAll(session => TcpSessionArrived?.Invoke(this, new TcpSessionArivedEventArgs()
+                {
+                    TcpSession = session
+                }));
+            });
+            
         }
     }
 }

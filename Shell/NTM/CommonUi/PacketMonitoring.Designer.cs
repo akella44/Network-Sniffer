@@ -271,6 +271,7 @@
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(984, 20);
             this.filterTextBox.TabIndex = 4;
+            this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
             // 
             // scrollDown
             // 

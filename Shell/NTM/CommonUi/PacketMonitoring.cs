@@ -23,6 +23,8 @@ using Shell.NTM.Statistics;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices.ComTypes;
+using Shell.NTM.NetworkProcessor.Event_Args;
+
 namespace Shell
 {
     public partial class PacketMonitoring : Form
@@ -30,12 +32,15 @@ namespace Shell
         private PacketsProcces _snif;
         private CancellationTokenSource _cts;
         private Task _sniffing;
-        private List<NetworkPacket> PacketsView;
+        private List<NetworkPacket> _packetsView;
 
+        private ViewFiltersBuilder _filters;
         private TempCsvCore _csvProcessor;
 
         public PacketMonitoring(ILiveDevice device)
         {
+            _filters = null;
+
             _cts = new CancellationTokenSource();
             var _ct = _cts.Token;
 
@@ -55,15 +60,12 @@ namespace Shell
             sessionsToolStripMenuItem.DropDown.Closing += checkedItems_MenuUnclosing;
             paketsToolStripMenuItem.DropDown.Closing += checkedItems_MenuUnclosing;
             
-            PacketsView = new List<NetworkPacket>();
+            _packetsView = new List<NetworkPacket>();
             packetDataGrid.CellValueNeeded += dgv_CellValueNeeded;
 
             Application.Idle += PacketGridInvalidate;
-            
-            _snif._tcpHandler.TcpPacketArived += AddTcpPacketToList;
-            _snif._udpHandler.UdpPacketArived += AddUdpPacketToList;
 
-            /*_snif._udpHandler.UdpSessionArrived += UdpSess_Notify;*/
+            _snif.NetworkPacketArived += AddNetworkPacketToViewList;
 
             startButton.Visible = false;
 
@@ -75,10 +77,6 @@ namespace Shell
             scrollDownToolTip.SetToolTip(scrollDown, "Проматывать бесконечно вниз");
         }
 
-        private void UdpSess_Notify(object sender, UdpStreamArivedEventArgs e)
-        {
-            MessageBox.Show("Udp Sess Arived");
-        }
         private void checkedItems_MenuUnclosing(object sender, ToolStripDropDownClosingEventArgs e)
         {
             if (e.CloseReason == ToolStripDropDownCloseReason.ItemClicked)
@@ -86,38 +84,39 @@ namespace Shell
         }
         private void PacketGridInvalidate(object sender, EventArgs e)
         {
-            packetDataGrid.RowCount = PacketsView.Count;
+            packetDataGrid.RowCount = _packetsView.Count;
             packetDataGrid.Invalidate();
             Thread.Sleep(200);
         }
-        private void AddTcpPacketToList(object sender, TcpPacketArivedEventArgs e)
+
+        private void AddNetworkPacketToViewList(object sender, NetworkPacketArivedEventArgs e)
         {
             if (e.Packet.Data.Length != 0)
             {
-                PacketsView.Add(e.Packet);
+                if (_filters != null)
+                {
+                    if (_filters.ValidatePacket(e.Packet))
+                        _packetsView.Add(e.Packet);
+                }
+                else
+                {
+                    _packetsView.Add(e.Packet);
+                }   
             }
         }
 
-        private void AddUdpPacketToList(object sender, UdpPacketArivedEventArgs e)
-        {
-            if (e.Packet.Data.Length != 0)
-            {
-                PacketsView.Add(e.Packet);
-            }
-
-        }
         private void dgv_CellValueNeeded(object sender, DataGridViewCellValueEventArgs e)
         {
-            if (e.RowIndex < 0 || e.RowIndex >= PacketsView.Count) return;
+            if (e.RowIndex < 0 || e.RowIndex >= _packetsView.Count) return;
             switch (e.ColumnIndex)
             {
                 case 0: e.Value = e.RowIndex; break;
-                case 1: e.Value = PacketsView[e.RowIndex].SourceIp; break;
-                case 2: e.Value = PacketsView[e.RowIndex].SourcePort; break;
-                case 3: e.Value = PacketsView[e.RowIndex].DestinationIp; break;
-                case 4: e.Value = PacketsView[e.RowIndex].DestinationPort; break;
-                case 5: e.Value = PacketsView[e.RowIndex].Protocol; break;
-                case 6: e.Value = PacketsView[e.RowIndex].Data.Length; break;
+                case 1: e.Value = _packetsView[e.RowIndex].SourceIp; break;
+                case 2: e.Value = _packetsView[e.RowIndex].SourcePort; break;
+                case 3: e.Value = _packetsView[e.RowIndex].DestinationIp; break;
+                case 4: e.Value = _packetsView[e.RowIndex].DestinationPort; break;
+                case 5: e.Value = _packetsView[e.RowIndex].Protocol; break;
+                case 6: e.Value = _packetsView[e.RowIndex].Data.Length; break;
             }
             if (scrollDown.Checked)
             {
@@ -131,11 +130,11 @@ namespace Shell
             if (udpSessionToolStripMenuItem.Checked)
             {
                 _csvProcessor.UdpSessionCsv.InitTempFile();
-                _snif._udpHandler.UdpSessionArrived += _csvProcessor.UdpSessionCsv.AddObjToTempCsvFile;
+                _snif.UdpSessionArrived += _csvProcessor.UdpSessionCsv.AddObjToTempCsvFile;
             }
             else
             {
-                _snif._udpHandler.UdpSessionArrived -= _csvProcessor.UdpSessionCsv.AddObjToTempCsvFile;
+                _snif.UdpSessionArrived -= _csvProcessor.UdpSessionCsv.AddObjToTempCsvFile;
                 _csvProcessor.UdpSessionCsv.Dispose();
             }
         }
@@ -145,11 +144,11 @@ namespace Shell
             if (tcpSessionToolStripMenuItem.Checked)
             {
                 _csvProcessor.TcpSessionCsv.InitTempFile();
-                _snif._tcpHandler.TcpSessionArrived += _csvProcessor.TcpSessionCsv.AddObjToTempCsvFile;
+                _snif.TcpSessionArrived += _csvProcessor.TcpSessionCsv.AddObjToTempCsvFile;
             }
             else
             {
-                _snif._tcpHandler.TcpSessionArrived -= _csvProcessor.TcpSessionCsv.AddObjToTempCsvFile;
+                _snif.TcpSessionArrived -= _csvProcessor.TcpSessionCsv.AddObjToTempCsvFile;
                 _csvProcessor.TcpSessionCsv.Dispose();
             }
         }
@@ -159,11 +158,11 @@ namespace Shell
             if (udpPacketToolStripMenuItem.Checked)
             {
                 _csvProcessor.UdpPacketCsv.InitTempFile();
-                _snif._udpHandler.UdpPacketArived += _csvProcessor.UdpPacketCsv.AddObjToTempCsvFile;
+                _snif.UdpPacketArived += _csvProcessor.UdpPacketCsv.AddObjToTempCsvFile;
             }
             else
             {
-                _snif._udpHandler.UdpPacketArived -= _csvProcessor.UdpPacketCsv.AddObjToTempCsvFile;
+                _snif.UdpPacketArived -= _csvProcessor.UdpPacketCsv.AddObjToTempCsvFile;
                 _csvProcessor.UdpPacketCsv.Dispose();
             }
         }
@@ -173,11 +172,11 @@ namespace Shell
             if (tcpPacketToolStripMenuItem.Checked)
             {
                 _csvProcessor.TcpPacketCsv.InitTempFile();
-                _snif._tcpHandler.TcpPacketArived += _csvProcessor.TcpPacketCsv.AddObjToTempCsvFile;
+                _snif.TcpPacketArived += _csvProcessor.TcpPacketCsv.AddObjToTempCsvFile;
             }
             else
             {
-                _snif._tcpHandler.TcpPacketArived -= _csvProcessor.TcpPacketCsv.AddObjToTempCsvFile;
+                _snif.TcpPacketArived -= _csvProcessor.TcpPacketCsv.AddObjToTempCsvFile;
                 _csvProcessor.TcpPacketCsv.Dispose();
             }
         }
@@ -187,7 +186,7 @@ namespace Shell
         {
             stopButton.Visible = true;
             startButton.Visible = false;
-            PacketsView.Clear();
+            _packetsView.Clear();
             await _snif.StartSniff();
         }
 
@@ -254,5 +253,16 @@ namespace Shell
             }
         }
 
+        private void filterTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (filterTextBox.Text.Length > 0)
+            {
+                _filters = new ViewFiltersBuilder(filterTextBox.Text);
+            }
+            else
+            {
+                _filters = null;
+            }
+        }
     }
 }

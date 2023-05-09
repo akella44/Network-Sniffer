@@ -101,6 +101,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NTM\CommonUi\ViewFiltersBuilder.cs" />
     <Compile Include="NTM\CommonUi\NetDeviceSelect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +114,7 @@
     <Compile Include="NTM\CommonUi\PacketMonitoring.Designer.cs">
       <DependentUpon>PacketMonitoring.cs</DependentUpon>
     </Compile>
+    <Compile Include="NTM\NetworkProcessor\Event Args\NetworkPacketArivedEventArgs.cs" />
     <Compile Include="NTM\NetworkProcessor\Event Args\TcpPacketArivedEventArgs.cs" />
     <Compile Include="NTM\NetworkProcessor\Event Args\TcpSessionArivedEventArgs.cs" />
     <Compile Include="NTM\NetworkProcessor\Event Args\UdpPacketArivedEventArgs.cs" />
@@ -126,9 +128,7 @@
     <Compile Include="NTM\NetworkProcessor\Objects\UdpPacket.cs" />
     <Compile Include="NTM\NetworkProcessor\Objects\UdpSession.cs" />
     <Compile Include="NTM\NetworkProcessor\PacketsProcces.cs" />
-    <Compile Include="NTM\NetworkProcessor\PacketsProcessor\TcpPacketHandler.cs" />
     <Compile Include="NTM\NetworkProcessor\PacketsProcessor\TcpSessionsbuilder.cs" />
-    <Compile Include="NTM\NetworkProcessor\PacketsProcessor\UdpPacketHandler.cs" />
     <Compile Include="NTM\NetworkProcessor\PacketsProcessor\UdpStreamBuilder.cs" />
     <Compile Include="NTM\Program.cs" />
     <Compile Include="NTM\CsvWorker\TempCsvCore.cs" />

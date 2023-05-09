@@ -48,9 +48,10 @@ namespace NTM.PacketsProcessor
                     });
 
                     this._udpStreamBuilder.HandlePacket(Packet);
+
                     foreach (var session in _udpStreamBuilder._sessions)
                     {
-                        if ((session.Packets[session.Packets.Count - 1].SentTime - session.Packets[session.Packets.Count - 2].SentTime).TotalMinutes > 2)
+                        if ((session.Packets[session.Packets.Count - 1].SentTime - session.Packets[session.Packets.Count - 2].SentTime).TotalSeconds > 30)
                         {
                             UdpSessionArrived?.Invoke(this, new UdpStreamArivedEventArgs()
                             {
@@ -58,14 +59,6 @@ namespace NTM.PacketsProcessor
                             });
                         }
                     }
-                    /*_udpStreamBuilder.completedSessions.AsParallel().ForAll((session) =>
-                    {
-                        UdpSessionArrived?.Invoke(this, new UdpStreamArivedEventArgs()
-                        {
-                            UdpSession = session
-                        });
-                        _udpStreamBuilder.completedSessions.Remove(session);
-                    });*/
                 }
             }
             catch (Exception ex)

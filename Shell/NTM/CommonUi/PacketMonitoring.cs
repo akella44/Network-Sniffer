@@ -63,7 +63,7 @@ namespace Shell
             _snif._tcpHandler.TcpPacketArived += AddTcpPacketToList;
             _snif._udpHandler.UdpPacketArived += AddUdpPacketToList;
 
-            _snif._udpHandler.UdpSessionArrived += UdpSess_Notify;
+            /*_snif._udpHandler.UdpSessionArrived += UdpSess_Notify;*/
 
             startButton.Visible = false;
 
@@ -205,6 +205,10 @@ namespace Shell
 
         private void saveFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            _snif.StopPacketProcessing();
+            startButton.Visible = true;
+            stopButton.Visible = false;
+
             if (File.Exists(_csvProcessor.UdpSessionCsv.FileName))
             {
                 if (saveCsvFilesDialog1.ShowDialog() == DialogResult.Cancel)

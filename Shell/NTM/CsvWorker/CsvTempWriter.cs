@@ -56,7 +56,15 @@ namespace Shell.NTM.Statistics
 
         public void Dispose()
         {
-            System.IO.File.Delete(FileName);
+
+            try 
+            {
+                System.IO.File.Delete(FileName);
+            }
+            catch
+            {
+                Thread.Sleep(10);
+            }
         }
     }
 }

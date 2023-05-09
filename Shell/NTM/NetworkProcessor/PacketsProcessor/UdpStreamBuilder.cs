@@ -15,7 +15,6 @@ namespace NTM.PacketsProcessor
     public class UdpStreamBuilder
     {
         public List<UdpSession> _sessions;
-        public List<UdpSession> completedSessions;
         private int _indexOfCurrentSession;
         public IEnumerable<UdpSession> Sessions
         {

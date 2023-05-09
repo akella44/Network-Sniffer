@@ -54,6 +54,7 @@
             this.filterTextBox = new System.Windows.Forms.TextBox();
             this.scrollDown = new System.Windows.Forms.CheckBox();
             this.saveCsvFilesDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.autoscrollLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.packetDataGrid)).BeginInit();
             this.ContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -281,6 +282,15 @@
             this.scrollDown.TabIndex = 5;
             this.scrollDown.UseVisualStyleBackColor = true;
             // 
+            // autoscrollLabel
+            // 
+            this.autoscrollLabel.AutoSize = true;
+            this.autoscrollLabel.Location = new System.Drawing.Point(892, 46);
+            this.autoscrollLabel.Name = "autoscrollLabel";
+            this.autoscrollLabel.Size = new System.Drawing.Size(83, 13);
+            this.autoscrollLabel.TabIndex = 6;
+            this.autoscrollLabel.Text = "Автопрокрутка";
+            // 
             // PacketMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -288,6 +298,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(1008, 601);
+            this.Controls.Add(this.autoscrollLabel);
             this.Controls.Add(this.scrollDown);
             this.Controls.Add(this.filterTextBox);
             this.Controls.Add(this.packetDataGrid);
@@ -334,5 +345,6 @@
         private System.Windows.Forms.ToolStripMenuItem saveFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem показатьТекущиеTempФайлыToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveCsvFilesDialog1;
+        private System.Windows.Forms.Label autoscrollLabel;
     }
 }

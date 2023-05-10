@@ -1,6 +1,7 @@
 ﻿using NTM.Objects;
 using System;
 using System.Collections.Generic;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,41 +15,58 @@ namespace Shell
         public string FilterRequest;
 
         private List<string> filterBlocks;
+        private Dictionary<string, string> filters;
         public ViewFiltersBuilder(string filterRequest)
         {
             FilterRequest = filterRequest;
             filterBlocks = FilterRequest.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
         }
 
+        private Dictionary<string, string> _initFiltersDictionary(NetworkPacket packet)
+        {
+            var filters = new Dictionary<string, string>()
+            {
+                { "DestinationPort", $"{packet.DestinationPort}" },
+                { "SourcePort", $"{packet.SourcePort}" },
+                { "DestinationIp", packet.DestinationIp },
+                { "SourceIp", packet.SourceIp },
+                { "Lenght", $"{packet.Data.Length}" },
+                { "Protocol", packet.Protocol }
+            };
+
+            return filters;
+        }
         public bool ValidatePacket(NetworkPacket packet)
         {
-            var flag = false;
-            foreach (var obj in filterBlocks)
+            bool flag = false;
+            filters = _initFiltersDictionary(packet);
+
+            foreach (var iter in filterBlocks)
             {
-                var tempList = obj.Split(new char[] { ':' }).ToList();
-                if (tempList[0] == "DestinationPort")
+                var tempList = iter.Split(new char[] { ':' }).ToList();
+                var subTempList = tempList[1].Split(new char[] { ',' }).ToList();
+
+                if (subTempList.Count <= 1)
                 {
-                    flag = ($"{packet.DestinationPort}" == tempList[1]);
-                }
-                if (tempList[0] == "SourcePort")
-                {
-                    flag = ($"{packet.SourcePort}" == tempList[1]);
-                }
-                if (tempList[0] == "DestinationIp")
-                {
-                    flag = ("{packet.DestinationIp}" == tempList[1]);
-                }
-                if (tempList[0] == "SourceIp")
-                {
-                    flag = ($"{packet.SourceIp}" == tempList[1]);
-                }
-                if (tempList[0] == "Protocol")
-                {
-                    flag = (packet.Protocol == tempList[1]);
+                    if (filters[tempList[0]] != tempList[1])
+                    {
+                        return false;
+                    }
+                    flag = true;
                 }
                 else
                 {
-
+                    for (int i = 0; i < subTempList.Count; i++)
+                    {
+                        if (filters[tempList[0]] == subTempList[i])
+                        {
+                            flag = true;
+                        }
+                        else
+                        {
+                            flag = false;
+                        }
+                    }
                 }
             }
             return flag;

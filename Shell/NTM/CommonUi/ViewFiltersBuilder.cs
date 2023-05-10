@@ -14,12 +14,12 @@ namespace Shell
     {
         public string FilterRequest;
 
-        private List<string> filterBlocks;
-        private Dictionary<string, string> filters;
+        private List<string> _filterBlocks;
+        private Dictionary<string, string> _filters;
         public ViewFiltersBuilder(string filterRequest)
         {
             FilterRequest = filterRequest;
-            filterBlocks = FilterRequest.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            _filterBlocks = FilterRequest.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
         }
 
         private Dictionary<string, string> _initFiltersDictionary(NetworkPacket packet)
@@ -39,16 +39,16 @@ namespace Shell
         public bool ValidatePacket(NetworkPacket packet)
         {
             bool flag = false;
-            filters = _initFiltersDictionary(packet);
+            _filters = _initFiltersDictionary(packet);
 
-            foreach (var iter in filterBlocks)
+            foreach (var iter in _filterBlocks)
             {
                 var tempList = iter.Split(new char[] { ':' }).ToList();
                 var subTempList = tempList[1].Split(new char[] { ',' }).ToList();
 
                 if (subTempList.Count <= 1)
                 {
-                    if (filters[tempList[0]] != tempList[1])
+                    if (_filters[tempList[0]] != tempList[1])
                     {
                         return false;
                     }
@@ -58,7 +58,7 @@ namespace Shell
                 {
                     for (int i = 0; i < subTempList.Count; i++)
                     {
-                        if (filters[tempList[0]] == subTempList[i])
+                        if (_filters[tempList[0]] == subTempList[i])
                         {
                             flag = true;
                         }

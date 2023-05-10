@@ -8,7 +8,6 @@ namespace NTM.Objects
 {
     public class TcpSession : NetworkSession<TcpPacket>
     {
-        public byte[] Data { get; set; }
         public override List<TcpPacket> Packets { get; set; }
 
         public int PacketCounter;

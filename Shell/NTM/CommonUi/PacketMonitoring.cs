@@ -197,11 +197,6 @@ namespace Shell
             _snif.StopPacketProcessing();
         }
 
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            Close();
-        }
-
         private void saveFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _snif.StopPacketProcessing();
@@ -263,6 +258,13 @@ namespace Shell
             {
                 _filters = null;
             }
+        }
+
+        private void PacketMonitoring_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _snif.StopPacketProcessing();
+            _packetsView.Clear();
+            _csvProcessor.Dispose();
         }
     }
 }

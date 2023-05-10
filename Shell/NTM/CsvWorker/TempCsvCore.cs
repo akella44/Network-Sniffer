@@ -22,5 +22,13 @@ namespace Shell.NTM.Statistics
             TcpPacketCsv = new CsvTempWriter<TcpPacket, TcpPacketArivedEventArgs>();
             TcpSessionCsv = new CsvTempWriter<TcpSession, TcpSessionArivedEventArgs>();
         }
+
+        public void Dispose()
+        {
+            UdpSessionCsv.Dispose();
+            UdpPacketCsv.Dispose();
+            TcpPacketCsv.Dispose();
+            TcpSessionCsv.Dispose();
+        }
     }
 }

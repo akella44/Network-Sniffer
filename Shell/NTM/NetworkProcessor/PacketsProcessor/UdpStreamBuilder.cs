@@ -27,7 +27,6 @@ namespace NTM.PacketsProcessor
                     DestinationIp = kvp.DestinationIp,
                     SourcePort = kvp.SourcePort,
                     DestinationPort = kvp.DestinationPort,
-                    Data = kvp.Data,
                     Packets = kvp.Packets
                 });
             }

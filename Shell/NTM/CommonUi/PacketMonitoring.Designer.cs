@@ -37,12 +37,9 @@
             this.DestinationPort = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Proctocol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Lenght = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stopButton = new System.Windows.Forms.Button();
-            this.startButton = new System.Windows.Forms.Button();
             this.ContextMenuStrip = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.показатьТекущиеTempФайлыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statisticsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.formOfCaptureDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +52,8 @@
             this.scrollDown = new System.Windows.Forms.CheckBox();
             this.saveCsvFilesDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.autoscrollLabel = new System.Windows.Forms.Label();
+            this.stopButton = new System.Windows.Forms.Button();
+            this.startButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.packetDataGrid)).BeginInit();
             this.ContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -136,33 +135,6 @@
             this.Lenght.Name = "Lenght";
             this.Lenght.ReadOnly = true;
             // 
-            // stopButton
-            // 
-            this.stopButton.BackColor = System.Drawing.Color.White;
-            this.stopButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.stopButton.FlatAppearance.BorderSize = 0;
-            this.stopButton.ForeColor = System.Drawing.SystemColors.Window;
-            this.stopButton.Image = global::Shell.Properties.Resources.Stop;
-            this.stopButton.Location = new System.Drawing.Point(12, 35);
-            this.stopButton.Name = "stopButton";
-            this.stopButton.Size = new System.Drawing.Size(25, 25);
-            this.stopButton.TabIndex = 1;
-            this.stopButton.UseVisualStyleBackColor = false;
-            this.stopButton.Click += new System.EventHandler(this.stopButton_OnClick);
-            // 
-            // startButton
-            // 
-            this.startButton.BackColor = System.Drawing.SystemColors.Window;
-            this.startButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.startButton.FlatAppearance.BorderSize = 0;
-            this.startButton.Image = global::Shell.Properties.Resources.Start;
-            this.startButton.Location = new System.Drawing.Point(12, 35);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(25, 25);
-            this.startButton.TabIndex = 0;
-            this.startButton.UseVisualStyleBackColor = false;
-            this.startButton.Click += new System.EventHandler(this.strartButton_OnClick);
-            // 
             // ContextMenuStrip
             // 
             this.ContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -177,8 +149,7 @@
             // файлToolStripMenuItem
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveFilesToolStripMenuItem,
-            this.показатьТекущиеTempФайлыToolStripMenuItem});
+            this.saveFilesToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
@@ -186,15 +157,9 @@
             // saveFilesToolStripMenuItem
             // 
             this.saveFilesToolStripMenuItem.Name = "saveFilesToolStripMenuItem";
-            this.saveFilesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+            this.saveFilesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.saveFilesToolStripMenuItem.Text = "Сохранить CSV файлы";
             this.saveFilesToolStripMenuItem.Click += new System.EventHandler(this.saveFilesToolStripMenuItem_Click);
-            // 
-            // показатьТекущиеTempФайлыToolStripMenuItem
-            // 
-            this.показатьТекущиеTempФайлыToolStripMenuItem.Name = "показатьТекущиеTempФайлыToolStripMenuItem";
-            this.показатьТекущиеTempФайлыToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
-            this.показатьТекущиеTempФайлыToolStripMenuItem.Text = "Показать текущие temp файлы";
             // 
             // statisticsMenu
             // 
@@ -285,12 +250,40 @@
             // 
             // autoscrollLabel
             // 
+            this.autoscrollLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.autoscrollLabel.AutoSize = true;
             this.autoscrollLabel.Location = new System.Drawing.Point(892, 46);
             this.autoscrollLabel.Name = "autoscrollLabel";
             this.autoscrollLabel.Size = new System.Drawing.Size(83, 13);
             this.autoscrollLabel.TabIndex = 6;
             this.autoscrollLabel.Text = "Автопрокрутка";
+            // 
+            // stopButton
+            // 
+            this.stopButton.BackColor = System.Drawing.Color.White;
+            this.stopButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.stopButton.FlatAppearance.BorderSize = 0;
+            this.stopButton.ForeColor = System.Drawing.SystemColors.Window;
+            this.stopButton.Image = global::Shell.Properties.Resources.Stop;
+            this.stopButton.Location = new System.Drawing.Point(12, 35);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(25, 25);
+            this.stopButton.TabIndex = 1;
+            this.stopButton.UseVisualStyleBackColor = false;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_OnClick);
+            // 
+            // startButton
+            // 
+            this.startButton.BackColor = System.Drawing.SystemColors.Window;
+            this.startButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.startButton.FlatAppearance.BorderSize = 0;
+            this.startButton.Image = global::Shell.Properties.Resources.Start;
+            this.startButton.Location = new System.Drawing.Point(12, 35);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(25, 25);
+            this.startButton.TabIndex = 0;
+            this.startButton.UseVisualStyleBackColor = false;
+            this.startButton.Click += new System.EventHandler(this.strartButton_OnClick);
             // 
             // PacketMonitoring
             // 
@@ -311,6 +304,7 @@
             this.MinimumSize = new System.Drawing.Size(1024, 640);
             this.Name = "PacketMonitoring";
             this.Text = "NTM System";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PacketMonitoring_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.packetDataGrid)).EndInit();
             this.ContextMenuStrip.ResumeLayout(false);
             this.ContextMenuStrip.PerformLayout();
@@ -344,7 +338,6 @@
         private System.Windows.Forms.ToolStripMenuItem udpPacketToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tcpPacketToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveFilesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem показатьТекущиеTempФайлыToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveCsvFilesDialog1;
         private System.Windows.Forms.Label autoscrollLabel;
     }

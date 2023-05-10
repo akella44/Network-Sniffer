@@ -22,7 +22,6 @@ namespace NTM.PacketsProcessor
                     DestinationIp = kvp.DestinationIp,
                     SourcePort = kvp.SourcePort,
                     DestinationPort = kvp.DestinationPort,
-                    Data = kvp.Data,
                     Packets = kvp.Packets
                 });
             }
@@ -56,7 +55,6 @@ namespace NTM.PacketsProcessor
 
             if (tcpPacket.Flag == 17 || tcpPacket.Flag == 1)
             {
-                currentSession.Data = _sessions[_indexOfCurrentSession].Data;
                 foreach (var currentTcpPacket in _sessions[_indexOfCurrentSession].Packets)
                 {
 

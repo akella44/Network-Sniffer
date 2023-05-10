@@ -7,7 +7,6 @@ namespace NTM.Objects
 {
     public class UdpSession : NetworkSession<UdpPacket>
     {
-        public byte[] Data { get; set; }
         public override List<UdpPacket> Packets { get; set; }
 
         public UdpSession()

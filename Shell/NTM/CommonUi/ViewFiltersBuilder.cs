@@ -1,4 +1,5 @@
 ﻿using NTM.Objects;
+using PacketDotNet;
 using System;
 using System.Collections.Generic;
 using System.IO.Packaging;
@@ -15,31 +16,36 @@ namespace Shell
         public string FilterRequest;
 
         private List<string> _filterBlocks;
-        private Dictionary<string, string> _filters;
+
+        public static Dictionary<string, string> Filters = new Dictionary<string, string>
+        {
+            { "DestinationPort", "" },
+            { "SourcePort", "" },
+            { "DestinationIp", "" },
+            { "SourceIp", "" },
+            { "Lenght", "" },
+            { "Protocol", "" }
+        };
         public ViewFiltersBuilder(string filterRequest)
         {
             FilterRequest = filterRequest;
             _filterBlocks = FilterRequest.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            
         }
 
-        private Dictionary<string, string> _initFiltersDictionary(NetworkPacket packet)
+        private void _setFiltersDictionaryValue(NetworkPacket packet)
         {
-            var filters = new Dictionary<string, string>()
-            {
-                { "DestinationPort", $"{packet.DestinationPort}" },
-                { "SourcePort", $"{packet.SourcePort}" },
-                { "DestinationIp", packet.DestinationIp },
-                { "SourceIp", packet.SourceIp },
-                { "Lenght", $"{packet.Data.Length}" },
-                { "Protocol", packet.Protocol }
-            };
-
-            return filters;
+            Filters["DestinationPort"] = $"{packet.DestinationPort}";
+            Filters["SourcePort"] = $"{packet.SourcePort}";
+            Filters["DestinationIp"] = packet.DestinationIp;
+            Filters["SourceIp"] = packet.SourceIp;
+            Filters["Lenght"] = $"{packet.Data.Length}";
+            Filters["Protocol"] = packet.Protocol;
         }
         public bool ValidatePacket(NetworkPacket packet)
         {
             bool flag = false;
-            _filters = _initFiltersDictionary(packet);
+            _setFiltersDictionaryValue(packet);
 
             foreach (var iter in _filterBlocks)
             {
@@ -48,7 +54,7 @@ namespace Shell
 
                 if (subTempList.Count <= 1)
                 {
-                    if (_filters[tempList[0]] != tempList[1])
+                    if (Filters[tempList[0]] != tempList[1])
                     {
                         return false;
                     }
@@ -58,7 +64,7 @@ namespace Shell
                 {
                     for (int i = 0; i < subTempList.Count; i++)
                     {
-                        if (_filters[tempList[0]] == subTempList[i])
+                        if (Filters[tempList[0]] == subTempList[i])
                         {
                             flag = true;
                         }

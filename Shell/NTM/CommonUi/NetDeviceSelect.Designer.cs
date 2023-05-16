@@ -38,7 +38,7 @@
             // devicesList
             // 
             this.devicesList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.devicesList.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.devicesList.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.devicesList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.devicesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.devicesList.ForeColor = System.Drawing.SystemColors.MenuText;
@@ -46,7 +46,7 @@
             this.devicesList.ItemHeight = 18;
             this.devicesList.Location = new System.Drawing.Point(12, 100);
             this.devicesList.Name = "devicesList";
-            this.devicesList.Size = new System.Drawing.Size(660, 324);
+            this.devicesList.Size = new System.Drawing.Size(660, 342);
             this.devicesList.TabIndex = 1;
             // 
             // deviceSelectText

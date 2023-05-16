@@ -52,6 +52,7 @@
             this.scrollDown = new System.Windows.Forms.CheckBox();
             this.saveCsvFilesDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.autoscrollLabel = new System.Windows.Forms.Label();
+            this.filterButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.packetDataGrid)).BeginInit();
@@ -258,6 +259,16 @@
             this.autoscrollLabel.TabIndex = 6;
             this.autoscrollLabel.Text = "Автопрокрутка";
             // 
+            // filterButton
+            // 
+            this.filterButton.Image = global::Shell.Properties.Resources.Filter;
+            this.filterButton.Location = new System.Drawing.Point(43, 35);
+            this.filterButton.Name = "filterButton";
+            this.filterButton.Size = new System.Drawing.Size(25, 25);
+            this.filterButton.TabIndex = 7;
+            this.filterButton.UseVisualStyleBackColor = true;
+            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
+            // 
             // stopButton
             // 
             this.stopButton.BackColor = System.Drawing.Color.White;
@@ -292,6 +303,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(1008, 601);
+            this.Controls.Add(this.filterButton);
             this.Controls.Add(this.autoscrollLabel);
             this.Controls.Add(this.scrollDown);
             this.Controls.Add(this.filterTextBox);
@@ -340,5 +352,6 @@
         private System.Windows.Forms.ToolStripMenuItem saveFilesToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveCsvFilesDialog1;
         private System.Windows.Forms.Label autoscrollLabel;
+        private System.Windows.Forms.Button filterButton;
     }
 }

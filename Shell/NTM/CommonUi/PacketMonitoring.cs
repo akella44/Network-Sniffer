@@ -236,5 +236,17 @@ namespace Shell
             _packetsView.Clear();
             _csvProcessor.Dispose();
         }
+
+        private void filterButton_Click(object sender, EventArgs e)
+        {
+            string filters = "Доступные фильрты:";
+            filters += Environment.NewLine;
+            foreach(var obj in ViewFiltersBuilder.Filters.Keys)
+            {
+                filters += obj;
+                filters += Environment.NewLine;
+            } 
+            MessageBox.Show(filters);
+        }
     }
 }

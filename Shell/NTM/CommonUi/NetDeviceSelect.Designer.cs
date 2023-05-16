@@ -38,7 +38,7 @@
             // devicesList
             // 
             this.devicesList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.devicesList.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.devicesList.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.devicesList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.devicesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.devicesList.ForeColor = System.Drawing.SystemColors.MenuText;
@@ -62,6 +62,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.groupBox1.Controls.Add(this.deviceSelectText);
             this.groupBox1.Controls.Add(this.devicesList);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;

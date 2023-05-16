@@ -52,6 +52,7 @@
             this.scrollDown = new System.Windows.Forms.CheckBox();
             this.saveCsvFilesDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.autoscrollLabel = new System.Windows.Forms.Label();
+            this.saveCsvFilesButton = new System.Windows.Forms.Button();
             this.filterButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
@@ -233,7 +234,7 @@
             // 
             this.filterTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterTextBox.Location = new System.Drawing.Point(12, 66);
+            this.filterTextBox.Location = new System.Drawing.Point(10, 65);
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(984, 20);
             this.filterTextBox.TabIndex = 4;
@@ -259,10 +260,21 @@
             this.autoscrollLabel.TabIndex = 6;
             this.autoscrollLabel.Text = "Автопрокрутка";
             // 
+            // saveCsvFilesButton
+            // 
+            this.saveCsvFilesButton.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.saveCsvFilesButton.Image = global::Shell.Properties.Resources.Save;
+            this.saveCsvFilesButton.Location = new System.Drawing.Point(35, 35);
+            this.saveCsvFilesButton.Name = "saveCsvFilesButton";
+            this.saveCsvFilesButton.Size = new System.Drawing.Size(25, 25);
+            this.saveCsvFilesButton.TabIndex = 8;
+            this.saveCsvFilesButton.UseVisualStyleBackColor = true;
+            this.saveCsvFilesButton.Click += new System.EventHandler(this.saveCsvFilesButton_Click);
+            // 
             // filterButton
             // 
             this.filterButton.Image = global::Shell.Properties.Resources.Filter;
-            this.filterButton.Location = new System.Drawing.Point(43, 35);
+            this.filterButton.Location = new System.Drawing.Point(60, 35);
             this.filterButton.Name = "filterButton";
             this.filterButton.Size = new System.Drawing.Size(25, 25);
             this.filterButton.TabIndex = 7;
@@ -276,7 +288,7 @@
             this.stopButton.FlatAppearance.BorderSize = 0;
             this.stopButton.ForeColor = System.Drawing.SystemColors.Window;
             this.stopButton.Image = global::Shell.Properties.Resources.Stop;
-            this.stopButton.Location = new System.Drawing.Point(12, 35);
+            this.stopButton.Location = new System.Drawing.Point(10, 35);
             this.stopButton.Name = "stopButton";
             this.stopButton.Size = new System.Drawing.Size(25, 25);
             this.stopButton.TabIndex = 1;
@@ -303,6 +315,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(1008, 601);
+            this.Controls.Add(this.saveCsvFilesButton);
             this.Controls.Add(this.filterButton);
             this.Controls.Add(this.autoscrollLabel);
             this.Controls.Add(this.scrollDown);
@@ -353,5 +366,6 @@
         private System.Windows.Forms.SaveFileDialog saveCsvFilesDialog1;
         private System.Windows.Forms.Label autoscrollLabel;
         private System.Windows.Forms.Button filterButton;
+        private System.Windows.Forms.Button saveCsvFilesButton;
     }
 }

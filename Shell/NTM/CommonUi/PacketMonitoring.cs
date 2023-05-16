@@ -197,7 +197,7 @@ namespace Shell
             _sniffer.StopPacketProcessing();
         }
 
-        private void saveFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void _saveCsvFiles()
         {
             _sniffer.StopPacketProcessing();
             startButton.Visible = true;
@@ -217,7 +217,15 @@ namespace Shell
                 MessageBox.Show("Csv файлов для сохранения не найдено");
             }
         }
+        private void saveFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _saveCsvFiles();
+        }
 
+        private void saveCsvFilesButton_Click(object sender, EventArgs e)
+        {
+            _saveCsvFiles();
+        }
         private void filterTextBox_TextChanged(object sender, EventArgs e)
         {
             if (filterTextBox.Text.Length > 0)
@@ -248,5 +256,7 @@ namespace Shell
             } 
             MessageBox.Show(filters);
         }
+
+        
     }
 }

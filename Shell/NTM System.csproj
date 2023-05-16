@@ -121,7 +121,6 @@
     <Compile Include="NTM\NetworkProcessor\Event Args\UdpStreamArivedEventArgs.cs" />
     <Compile Include="NTM\NetworkProcessor\Objects\NetworkPacket.cs" />
     <Compile Include="NTM\NetworkProcessor\Objects\NetworkSession.cs" />
-    <Compile Include="NTM\NetworkProcessor\Objects\PacketData.cs" />
     <Compile Include="NTM\NetworkProcessor\Objects\TcpPacket.cs" />
     <Compile Include="NTM\NetworkProcessor\Objects\TcpRecon.cs" />
     <Compile Include="NTM\NetworkProcessor\Objects\TcpSession.cs" />

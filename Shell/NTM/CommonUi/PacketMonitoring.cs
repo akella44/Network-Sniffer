@@ -29,7 +29,7 @@ namespace Shell
 {
     public partial class PacketMonitoring : Form
     {
-        private PacketsProcces _snif;
+        private PacketsProcces _sniffer;
         private CancellationTokenSource _cts;
         private Task _sniffing;
         private List<NetworkPacket> _packetsView;
@@ -52,8 +52,8 @@ namespace Shell
             typeof(Control).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).SetValue(packetDataGrid, true, null);
             packetDataGrid.ReadOnly = true;
 
-            _snif = new PacketsProcces(device);
-            _snif.StartSniff();
+            _sniffer = new PacketsProcces(device);
+            _sniffer.StartSniff();
 
             _csvProcessor = new TempCsvCore();
 
@@ -65,7 +65,7 @@ namespace Shell
 
             Application.Idle += PacketGridInvalidate;
 
-            _snif.NetworkPacketArived += AddNetworkPacketToViewList;
+            _sniffer.NetworkPacketArived += AddNetworkPacketToViewList;
 
             startButton.Visible = false;
 
@@ -130,11 +130,11 @@ namespace Shell
             if (udpSessionToolStripMenuItem.Checked)
             {
                 _csvProcessor.UdpSessionCsv.InitTempFile();
-                _snif.UdpSessionArrived += _csvProcessor.UdpSessionCsv.AddObjToTempCsvFile;
+                _sniffer.UdpSessionArrived += _csvProcessor.UdpSessionCsv.AddObjToTempCsvFile;
             }
             else
             {
-                _snif.UdpSessionArrived -= _csvProcessor.UdpSessionCsv.AddObjToTempCsvFile;
+                _sniffer.UdpSessionArrived -= _csvProcessor.UdpSessionCsv.AddObjToTempCsvFile;
                 _csvProcessor.UdpSessionCsv.Dispose();
             }
         }
@@ -144,11 +144,11 @@ namespace Shell
             if (tcpSessionToolStripMenuItem.Checked)
             {
                 _csvProcessor.TcpSessionCsv.InitTempFile();
-                _snif.TcpSessionArrived += _csvProcessor.TcpSessionCsv.AddObjToTempCsvFile;
+                _sniffer.TcpSessionArrived += _csvProcessor.TcpSessionCsv.AddObjToTempCsvFile;
             }
             else
             {
-                _snif.TcpSessionArrived -= _csvProcessor.TcpSessionCsv.AddObjToTempCsvFile;
+                _sniffer.TcpSessionArrived -= _csvProcessor.TcpSessionCsv.AddObjToTempCsvFile;
                 _csvProcessor.TcpSessionCsv.Dispose();
             }
         }
@@ -158,11 +158,11 @@ namespace Shell
             if (udpPacketToolStripMenuItem.Checked)
             {
                 _csvProcessor.UdpPacketCsv.InitTempFile();
-                _snif.UdpPacketArived += _csvProcessor.UdpPacketCsv.AddObjToTempCsvFile;
+                _sniffer.UdpPacketArived += _csvProcessor.UdpPacketCsv.AddObjToTempCsvFile;
             }
             else
             {
-                _snif.UdpPacketArived -= _csvProcessor.UdpPacketCsv.AddObjToTempCsvFile;
+                _sniffer.UdpPacketArived -= _csvProcessor.UdpPacketCsv.AddObjToTempCsvFile;
                 _csvProcessor.UdpPacketCsv.Dispose();
             }
         }
@@ -172,11 +172,11 @@ namespace Shell
             if (tcpPacketToolStripMenuItem.Checked)
             {
                 _csvProcessor.TcpPacketCsv.InitTempFile();
-                _snif.TcpPacketArived += _csvProcessor.TcpPacketCsv.AddObjToTempCsvFile;
+                _sniffer.TcpPacketArived += _csvProcessor.TcpPacketCsv.AddObjToTempCsvFile;
             }
             else
             {
-                _snif.TcpPacketArived -= _csvProcessor.TcpPacketCsv.AddObjToTempCsvFile;
+                _sniffer.TcpPacketArived -= _csvProcessor.TcpPacketCsv.AddObjToTempCsvFile;
                 _csvProcessor.TcpPacketCsv.Dispose();
             }
         }
@@ -187,60 +187,30 @@ namespace Shell
             stopButton.Visible = true;
             startButton.Visible = false;
             _packetsView.Clear();
-            await _snif.StartSniff();
+            await _sniffer.StartSniff();
         }
 
         private void stopButton_OnClick(object sender, EventArgs e)
         {
             startButton.Visible = true;
             stopButton.Visible = false;
-            _snif.StopPacketProcessing();
+            _sniffer.StopPacketProcessing();
         }
 
         private void saveFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _snif.StopPacketProcessing();
+            _sniffer.StopPacketProcessing();
             startButton.Visible = true;
             stopButton.Visible = false;
 
-            if (File.Exists(_csvProcessor.UdpSessionCsv.FileName))
+            if (_csvProcessor.FilesExists())
             {
                 if (saveCsvFilesDialog1.ShowDialog() == DialogResult.Cancel)
                 {
                     return;
                 }
                 string filename = saveCsvFilesDialog1.FileName;
-                _csvProcessor.UdpSessionCsv.FileInfo.CopyTo(filename);
-            }
-
-            if (File.Exists(_csvProcessor.TcpSessionCsv.FileName))
-            {
-                if (saveCsvFilesDialog1.ShowDialog() == DialogResult.Cancel)
-                {
-                    return;
-                }
-                string filename = saveCsvFilesDialog1.FileName;
-                _csvProcessor.TcpSessionCsv.FileInfo.CopyTo(filename);
-            }
-
-            if (File.Exists(_csvProcessor.TcpPacketCsv.FileName))
-            {
-                if (saveCsvFilesDialog1.ShowDialog() == DialogResult.Cancel)
-                {
-                    return;
-                }
-                string filename = saveCsvFilesDialog1.FileName;
-                _csvProcessor.TcpPacketCsv.FileInfo.CopyTo(filename);
-            }
-
-            if (File.Exists(_csvProcessor.UdpPacketCsv.FileName))
-            {
-                if (saveCsvFilesDialog1.ShowDialog() == DialogResult.Cancel)
-                {
-                    return;
-                }
-                string filename = saveCsvFilesDialog1.FileName;
-                _csvProcessor.UdpPacketCsv.FileInfo.CopyTo(filename);
+                _csvProcessor.SaveFiles(filename);
             }
             else
             {
@@ -262,7 +232,7 @@ namespace Shell
 
         private void PacketMonitoring_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _snif.StopPacketProcessing();
+            _sniffer.StopPacketProcessing();
             _packetsView.Clear();
             _csvProcessor.Dispose();
         }

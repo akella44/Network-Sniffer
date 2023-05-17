@@ -24,12 +24,13 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices.ComTypes;
 using Shell.NTM.NetworkProcessor.Event_Args;
+using Shell.NTM.CommonUi;
 
 namespace Shell
 {
     public partial class PacketMonitoring : Form
     {
-        private PacketsProcces _sniffer;
+        private PacketsProccesor _sniffer;
         private CancellationTokenSource _cts;
         private Task _sniffing;
         private List<NetworkPacket> _packetsView;
@@ -37,6 +38,7 @@ namespace Shell
         private ViewFiltersBuilder _filters;
         private TempCsvCore _csvProcessor;
 
+        private Filters _filtersForm;
         public PacketMonitoring(ILiveDevice device)
         {
             _filters = null;
@@ -52,7 +54,7 @@ namespace Shell
             typeof(Control).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).SetValue(packetDataGrid, true, null);
             packetDataGrid.ReadOnly = true;
 
-            _sniffer = new PacketsProcces(device);
+            _sniffer = new PacketsProccesor(device);
             _sniffer.StartSniff();
 
             _csvProcessor = new TempCsvCore();
@@ -243,20 +245,30 @@ namespace Shell
             _sniffer.StopPacketProcessing();
             _packetsView.Clear();
             _csvProcessor.Dispose();
+            _filtersForm.Dispose();
+            Application.Exit();
         }
 
+        private void _filtersShow()
+        {
+            if (_filtersForm != null)
+            {
+                _filtersForm.Show();
+            }
+            else
+            {
+                _filtersForm = new Filters(_filters);
+                _filtersForm.Show();
+            }
+        }
         private void filterButton_Click(object sender, EventArgs e)
         {
-            string filters = "Доступные фильрты:";
-            filters += Environment.NewLine;
-            foreach(var obj in ViewFiltersBuilder.Filters.Keys)
-            {
-                filters += obj;
-                filters += Environment.NewLine;
-            } 
-            MessageBox.Show(filters);
+            _filtersShow();
         }
 
-        
+        private void FiltersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _filtersShow();
+        }
     }
 }

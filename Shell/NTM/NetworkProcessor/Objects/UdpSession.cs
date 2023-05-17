@@ -24,8 +24,6 @@ namespace NTM.Objects
 
             var session = obj as UdpSession;
 
-            // Note: we need to check both directions of the conversation to 
-            // determine equality.
             return (this.SourceIp == session.SourceIp &&
                     this.DestinationIp == session.DestinationIp &&
                     this.SourcePort == session.SourcePort &&

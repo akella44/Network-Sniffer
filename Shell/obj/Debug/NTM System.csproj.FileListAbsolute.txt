@@ -32,3 +32,4 @@ C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\CsvHelper.xml
 C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\Microsoft.Bcl.HashCode.xml
 C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Admin\source\repos\Shell-master\Shell\obj\Debug\Shell.NTM.CommonUi.Filters.resources

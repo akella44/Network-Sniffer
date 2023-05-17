@@ -15,7 +15,7 @@ using Shell.NTM.NetworkProcessor.Event_Args;
 
 namespace NTM
 {
-    public class PacketsProcces
+    public class PacketsProccesor
     {
         public event EventHandler<NetworkPacketArivedEventArgs> NetworkPacketArived;
 
@@ -35,7 +35,7 @@ namespace NTM
         
         public ILiveDevice Device { get; private set; }
 
-        public PacketsProcces(ILiveDevice device)
+        public PacketsProccesor(ILiveDevice device)
         {
             _udpStreamBuilder = new UdpStreamBuilder();
             _tcpSessionsBuilder = new TcpSessionsBuilder();

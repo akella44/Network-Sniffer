@@ -31,14 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NetDeviceSelect));
             this.devicesList = new System.Windows.Forms.ListBox();
             this.deviceSelectText = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox1.SuspendLayout();
+            this.DeviceSelectGroupBox = new System.Windows.Forms.GroupBox();
+            this.DeviceSelectGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // devicesList
             // 
             this.devicesList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.devicesList.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.devicesList.BackColor = System.Drawing.Color.White;
             this.devicesList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.devicesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.devicesList.ForeColor = System.Drawing.SystemColors.MenuText;
@@ -60,17 +60,17 @@
             this.deviceSelectText.TabIndex = 0;
             this.deviceSelectText.Text = "Выберите устройство для захвата";
             // 
-            // groupBox1
+            // DeviceSelectGroupBox
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox1.Controls.Add(this.deviceSelectText);
-            this.groupBox1.Controls.Add(this.devicesList);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(684, 461);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
+            this.DeviceSelectGroupBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.DeviceSelectGroupBox.Controls.Add(this.deviceSelectText);
+            this.DeviceSelectGroupBox.Controls.Add(this.devicesList);
+            this.DeviceSelectGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DeviceSelectGroupBox.Location = new System.Drawing.Point(0, 0);
+            this.DeviceSelectGroupBox.Name = "DeviceSelectGroupBox";
+            this.DeviceSelectGroupBox.Size = new System.Drawing.Size(684, 461);
+            this.DeviceSelectGroupBox.TabIndex = 2;
+            this.DeviceSelectGroupBox.TabStop = false;
             // 
             // NetDeviceSelect
             // 
@@ -78,14 +78,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(684, 461);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.DeviceSelectGroupBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(700, 500);
             this.Name = "NetDeviceSelect";
             this.Text = "NTM System";
             this.Load += new System.EventHandler(this.NetDeviceSelect_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.DeviceSelectGroupBox.ResumeLayout(false);
+            this.DeviceSelectGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -94,7 +94,7 @@
 
         private System.Windows.Forms.ListBox devicesList;
         private System.Windows.Forms.Label deviceSelectText;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox DeviceSelectGroupBox;
     }
 }
 

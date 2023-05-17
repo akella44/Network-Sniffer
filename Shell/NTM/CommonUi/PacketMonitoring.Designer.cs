@@ -56,6 +56,8 @@
             this.filterButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
+            this.фильтрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.packetDataGrid)).BeginInit();
             this.ContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +70,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.packetDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.packetDataGrid.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.packetDataGrid.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.packetDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.packetDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.packetDataGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -141,7 +143,8 @@
             // 
             this.ContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
-            this.statisticsMenu});
+            this.statisticsMenu,
+            this.фильтрыToolStripMenuItem});
             this.ContextMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.ContextMenuStrip.Name = "ContextMenuStrip";
             this.ContextMenuStrip.Size = new System.Drawing.Size(1008, 24);
@@ -308,11 +311,26 @@
             this.startButton.UseVisualStyleBackColor = false;
             this.startButton.Click += new System.EventHandler(this.strartButton_OnClick);
             // 
+            // фильтрыToolStripMenuItem
+            // 
+            this.фильтрыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FiltersToolStripMenuItem});
+            this.фильтрыToolStripMenuItem.Name = "фильтрыToolStripMenuItem";
+            this.фильтрыToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.фильтрыToolStripMenuItem.Text = "Фильтры";
+            // 
+            // FiltersToolStripMenuItem
+            // 
+            this.FiltersToolStripMenuItem.Name = "FiltersToolStripMenuItem";
+            this.FiltersToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.FiltersToolStripMenuItem.Text = "Доступные фильтры";
+            this.FiltersToolStripMenuItem.Click += new System.EventHandler(this.FiltersToolStripMenuItem_Click);
+            // 
             // PacketMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(1008, 601);
             this.Controls.Add(this.saveCsvFilesButton);
@@ -367,5 +385,7 @@
         private System.Windows.Forms.Label autoscrollLabel;
         private System.Windows.Forms.Button filterButton;
         private System.Windows.Forms.Button saveCsvFilesButton;
+        private System.Windows.Forms.ToolStripMenuItem фильтрыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FiltersToolStripMenuItem;
     }
 }

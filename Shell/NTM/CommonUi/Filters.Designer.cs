@@ -70,7 +70,7 @@
             this.Controls.Add(this.filtersGroupBox);
             this.Controls.Add(this.filtersHandlerLabel);
             this.Name = "Filters";
-            this.Text = "Filters";
+            this.Text = "Фильтры";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Filters_FormClosing);
             this.Load += new System.EventHandler(this.Filters_Load);
             this.filtersGroupBox.ResumeLayout(false);

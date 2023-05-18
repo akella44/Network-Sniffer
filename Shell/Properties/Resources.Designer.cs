@@ -83,16 +83,6 @@ namespace Shell.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Saving {
-            get {
-                object obj = ResourceManager.GetObject("Saving", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Start {
             get {
                 object obj = ResourceManager.GetObject("Start", resourceCulture);

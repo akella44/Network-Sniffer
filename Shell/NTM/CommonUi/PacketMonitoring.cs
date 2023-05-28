@@ -39,6 +39,7 @@ namespace Shell
         private TempCsvCore _csvProcessor;
 
         private Filters _filtersForm;
+        private SuspTrafficForm _suspTrafficForm;
         public PacketMonitoring(ILiveDevice device)
         {
             _filters = null;
@@ -246,6 +247,7 @@ namespace Shell
             _packetsView.Clear();
             _csvProcessor.Dispose();
             _filtersForm.Dispose();
+            _suspTrafficForm.Dispose();
             Application.Exit();
         }
 
@@ -269,6 +271,19 @@ namespace Shell
         private void FiltersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _filtersShow();
+        }
+
+        private void suspTrafficToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_suspTrafficForm != null)
+            {
+                _suspTrafficForm.Show();
+            }
+            else
+            {
+                _suspTrafficForm = new SuspTrafficForm(_sniffer);
+                _suspTrafficForm.Show();
+            }
         }
     }
 }

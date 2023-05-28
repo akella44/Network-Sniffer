@@ -33,3 +33,4 @@ C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\Microsoft.Bcl.AsyncInte
 C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\Microsoft.Bcl.HashCode.xml
 C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Admin\source\repos\Shell-master\Shell\obj\Debug\Shell.NTM.CommonUi.Filters.resources
+C:\Users\Admin\source\repos\Shell-master\Shell\obj\Debug\Shell.NTM.CommonUi.SuspTrafficForm.resources

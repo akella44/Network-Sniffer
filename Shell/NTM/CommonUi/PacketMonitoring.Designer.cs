@@ -48,6 +48,8 @@
             this.paketsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.udpPacketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tcpPacketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.фильтрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterTextBox = new System.Windows.Forms.TextBox();
             this.scrollDown = new System.Windows.Forms.CheckBox();
             this.saveCsvFilesDialog1 = new System.Windows.Forms.SaveFileDialog();
@@ -56,8 +58,7 @@
             this.filterButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
-            this.фильтрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.FiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.suspTrafficToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.packetDataGrid)).BeginInit();
             this.ContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -169,7 +170,8 @@
             // statisticsMenu
             // 
             this.statisticsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.formOfCaptureDataToolStripMenuItem});
+            this.formOfCaptureDataToolStripMenuItem,
+            this.suspTrafficToolStripMenuItem});
             this.statisticsMenu.Name = "statisticsMenu";
             this.statisticsMenu.Size = new System.Drawing.Size(80, 20);
             this.statisticsMenu.Text = "Статистика";
@@ -180,7 +182,7 @@
             this.sessionsToolStripMenuItem,
             this.paketsToolStripMenuItem});
             this.formOfCaptureDataToolStripMenuItem.Name = "formOfCaptureDataToolStripMenuItem";
-            this.formOfCaptureDataToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.formOfCaptureDataToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.formOfCaptureDataToolStripMenuItem.Text = "Формат захвата данных";
             // 
             // sessionsToolStripMenuItem
@@ -232,6 +234,21 @@
             this.tcpPacketToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
             this.tcpPacketToolStripMenuItem.Text = "Tcp";
             this.tcpPacketToolStripMenuItem.CheckedChanged += new System.EventHandler(this.tcpPacketToolStripMenuItem_ChekedChanged);
+            // 
+            // фильтрыToolStripMenuItem
+            // 
+            this.фильтрыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FiltersToolStripMenuItem});
+            this.фильтрыToolStripMenuItem.Name = "фильтрыToolStripMenuItem";
+            this.фильтрыToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.фильтрыToolStripMenuItem.Text = "Фильтры";
+            // 
+            // FiltersToolStripMenuItem
+            // 
+            this.FiltersToolStripMenuItem.Name = "FiltersToolStripMenuItem";
+            this.FiltersToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.FiltersToolStripMenuItem.Text = "Доступные фильтры";
+            this.FiltersToolStripMenuItem.Click += new System.EventHandler(this.FiltersToolStripMenuItem_Click);
             // 
             // filterTextBox
             // 
@@ -311,20 +328,12 @@
             this.startButton.UseVisualStyleBackColor = false;
             this.startButton.Click += new System.EventHandler(this.strartButton_OnClick);
             // 
-            // фильтрыToolStripMenuItem
+            // suspTrafficToolStripMenuItem
             // 
-            this.фильтрыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.FiltersToolStripMenuItem});
-            this.фильтрыToolStripMenuItem.Name = "фильтрыToolStripMenuItem";
-            this.фильтрыToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.фильтрыToolStripMenuItem.Text = "Фильтры";
-            // 
-            // FiltersToolStripMenuItem
-            // 
-            this.FiltersToolStripMenuItem.Name = "FiltersToolStripMenuItem";
-            this.FiltersToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.FiltersToolStripMenuItem.Text = "Доступные фильтры";
-            this.FiltersToolStripMenuItem.Click += new System.EventHandler(this.FiltersToolStripMenuItem_Click);
+            this.suspTrafficToolStripMenuItem.Name = "suspTrafficToolStripMenuItem";
+            this.suspTrafficToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.suspTrafficToolStripMenuItem.Text = "Подозрительный трафик";
+            this.suspTrafficToolStripMenuItem.Click += new System.EventHandler(this.suspTrafficToolStripMenuItem_Click);
             // 
             // PacketMonitoring
             // 
@@ -387,5 +396,6 @@
         private System.Windows.Forms.Button saveCsvFilesButton;
         private System.Windows.Forms.ToolStripMenuItem фильтрыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem FiltersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem suspTrafficToolStripMenuItem;
     }
 }

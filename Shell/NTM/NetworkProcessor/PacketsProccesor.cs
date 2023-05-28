@@ -49,11 +49,11 @@ namespace NTM
         {
             Device.Open(DeviceModes.Promiscuous, 1000);
             Device.OnPacketArrival += AddPacketToQueue;
-            await Task.Run(() => StartPacketProcessingThread());
+            await Task.Run(() => _startPacketProcessingThread());
             Device.StartCapture();
         }
 
-        private void StartPacketProcessingThread()
+        private void _startPacketProcessingThread()
         {
             _cts = new CancellationTokenSource();
             var ct = _cts.Token;

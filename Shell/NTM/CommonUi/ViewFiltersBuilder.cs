@@ -19,12 +19,12 @@ namespace Shell
 
         public static Dictionary<string, string> Filters = new Dictionary<string, string>
         {
-            { "DestinationPort", "" },
-            { "SourcePort", "" },
-            { "DestinationIp", "" },
-            { "SourceIp", "" },
-            { "Lenght", "" },
-            { "Protocol", "" }
+            { "ПортНазначения", "" },
+            { "ПортИсточника", "" },
+            { "IpНазначения", "" },
+            { "IpИсточника", "" },
+            { "Длина", "" },
+            { "Протокол", "" }
         };
         public ViewFiltersBuilder(string filterRequest)
         {
@@ -35,12 +35,12 @@ namespace Shell
 
         private void _setFiltersDictionaryValue(NetworkPacket packet)
         {
-            Filters["DestinationPort"] = $"{packet.DestinationPort}";
-            Filters["SourcePort"] = $"{packet.SourcePort}";
-            Filters["DestinationIp"] = packet.DestinationIp;
-            Filters["SourceIp"] = packet.SourceIp;
-            Filters["Lenght"] = $"{packet.Data.Length}";
-            Filters["Protocol"] = packet.Protocol;
+            Filters["ПортНазначения"] = $"{packet.DestinationPort}";
+            Filters["ПортИсточника"] = $"{packet.SourcePort}";
+            Filters["IpНазначения"] = packet.DestinationIp;
+            Filters["IpИсточника"] = packet.SourceIp;
+            Filters["Длина"] = $"{packet.Data.Length}";
+            Filters["Протокол"] = packet.Protocol;
         }
         public bool ValidatePacket(NetworkPacket packet)
         {

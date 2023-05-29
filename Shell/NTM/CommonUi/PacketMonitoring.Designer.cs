@@ -30,13 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PacketMonitoring));
             this.packetDataGrid = new System.Windows.Forms.DataGridView();
-            this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SourcePort = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Desination = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DestinationPort = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Proctocol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lenght = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ContextMenuStrip = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,6 +41,7 @@
             this.paketsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.udpPacketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tcpPacketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.suspTrafficToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.фильтрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterTextBox = new System.Windows.Forms.TextBox();
@@ -58,7 +52,13 @@
             this.filterButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
-            this.suspTrafficToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SourcePort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Desination = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DestinationPort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Proctocol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lenght = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.packetDataGrid)).BeginInit();
             this.ContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -93,52 +93,6 @@
             this.packetDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.packetDataGrid.Size = new System.Drawing.Size(1008, 500);
             this.packetDataGrid.TabIndex = 2;
-            // 
-            // Nom
-            // 
-            this.Nom.HeaderText = "Nom";
-            this.Nom.Name = "Nom";
-            this.Nom.ReadOnly = true;
-            // 
-            // Source
-            // 
-            this.Source.HeaderText = "Source";
-            this.Source.MinimumWidth = 50;
-            this.Source.Name = "Source";
-            this.Source.ReadOnly = true;
-            // 
-            // SourcePort
-            // 
-            this.SourcePort.HeaderText = "Source Port";
-            this.SourcePort.Name = "SourcePort";
-            this.SourcePort.ReadOnly = true;
-            // 
-            // Desination
-            // 
-            this.Desination.HeaderText = "Desination";
-            this.Desination.MinimumWidth = 50;
-            this.Desination.Name = "Desination";
-            this.Desination.ReadOnly = true;
-            // 
-            // DestinationPort
-            // 
-            this.DestinationPort.HeaderText = "Destination Port";
-            this.DestinationPort.Name = "DestinationPort";
-            this.DestinationPort.ReadOnly = true;
-            // 
-            // Proctocol
-            // 
-            this.Proctocol.HeaderText = "Proctocol";
-            this.Proctocol.MinimumWidth = 20;
-            this.Proctocol.Name = "Proctocol";
-            this.Proctocol.ReadOnly = true;
-            // 
-            // Lenght
-            // 
-            this.Lenght.HeaderText = "Lenght";
-            this.Lenght.MinimumWidth = 10;
-            this.Lenght.Name = "Lenght";
-            this.Lenght.ReadOnly = true;
             // 
             // ContextMenuStrip
             // 
@@ -235,6 +189,13 @@
             this.tcpPacketToolStripMenuItem.Text = "Tcp";
             this.tcpPacketToolStripMenuItem.CheckedChanged += new System.EventHandler(this.tcpPacketToolStripMenuItem_ChekedChanged);
             // 
+            // suspTrafficToolStripMenuItem
+            // 
+            this.suspTrafficToolStripMenuItem.Name = "suspTrafficToolStripMenuItem";
+            this.suspTrafficToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.suspTrafficToolStripMenuItem.Text = "Подозрительный трафик";
+            this.suspTrafficToolStripMenuItem.Click += new System.EventHandler(this.suspTrafficToolStripMenuItem_Click);
+            // 
             // фильтрыToolStripMenuItem
             // 
             this.фильтрыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -328,12 +289,51 @@
             this.startButton.UseVisualStyleBackColor = false;
             this.startButton.Click += new System.EventHandler(this.strartButton_OnClick);
             // 
-            // suspTrafficToolStripMenuItem
+            // Nom
             // 
-            this.suspTrafficToolStripMenuItem.Name = "suspTrafficToolStripMenuItem";
-            this.suspTrafficToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
-            this.suspTrafficToolStripMenuItem.Text = "Подозрительный трафик";
-            this.suspTrafficToolStripMenuItem.Click += new System.EventHandler(this.suspTrafficToolStripMenuItem_Click);
+            this.Nom.HeaderText = "Номер";
+            this.Nom.Name = "Nom";
+            this.Nom.ReadOnly = true;
+            // 
+            // Source
+            // 
+            this.Source.HeaderText = "Источник";
+            this.Source.MinimumWidth = 50;
+            this.Source.Name = "Source";
+            this.Source.ReadOnly = true;
+            // 
+            // SourcePort
+            // 
+            this.SourcePort.HeaderText = "Порт источника";
+            this.SourcePort.Name = "SourcePort";
+            this.SourcePort.ReadOnly = true;
+            // 
+            // Desination
+            // 
+            this.Desination.HeaderText = "Назначение";
+            this.Desination.MinimumWidth = 50;
+            this.Desination.Name = "Desination";
+            this.Desination.ReadOnly = true;
+            // 
+            // DestinationPort
+            // 
+            this.DestinationPort.HeaderText = "Порт Назначения";
+            this.DestinationPort.Name = "DestinationPort";
+            this.DestinationPort.ReadOnly = true;
+            // 
+            // Proctocol
+            // 
+            this.Proctocol.HeaderText = "Протокол";
+            this.Proctocol.MinimumWidth = 20;
+            this.Proctocol.Name = "Proctocol";
+            this.Proctocol.ReadOnly = true;
+            // 
+            // Lenght
+            // 
+            this.Lenght.HeaderText = "Длина";
+            this.Lenght.MinimumWidth = 10;
+            this.Lenght.Name = "Lenght";
+            this.Lenght.ReadOnly = true;
             // 
             // PacketMonitoring
             // 
@@ -355,7 +355,7 @@
             this.MainMenuStrip = this.ContextMenuStrip;
             this.MinimumSize = new System.Drawing.Size(1024, 640);
             this.Name = "PacketMonitoring";
-            this.Text = "NTM System";
+            this.Text = "Система сетевого мониторинга";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PacketMonitoring_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.packetDataGrid)).EndInit();
             this.ContextMenuStrip.ResumeLayout(false);
@@ -374,13 +374,6 @@
         public System.Windows.Forms.DataGridView packetDataGrid;
         private System.Windows.Forms.TextBox filterTextBox;
         private System.Windows.Forms.CheckBox scrollDown;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Source;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SourcePort;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Desination;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DestinationPort;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Proctocol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Lenght;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem formOfCaptureDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sessionsToolStripMenuItem;
@@ -397,5 +390,12 @@
         private System.Windows.Forms.ToolStripMenuItem фильтрыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem FiltersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem suspTrafficToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Source;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SourcePort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Desination;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DestinationPort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Proctocol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Lenght;
     }
 }

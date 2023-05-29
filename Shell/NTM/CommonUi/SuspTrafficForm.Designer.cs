@@ -36,8 +36,8 @@
             // 
             // suspTrafficGridView
             // 
-            this.suspTrafficGridView.AllowDrop = true;
-            this.suspTrafficGridView.AllowUserToOrderColumns = true;
+            this.suspTrafficGridView.AllowUserToAddRows = false;
+            this.suspTrafficGridView.AllowUserToDeleteRows = false;
             this.suspTrafficGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));

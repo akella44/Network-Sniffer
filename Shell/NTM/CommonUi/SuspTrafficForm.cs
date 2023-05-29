@@ -67,5 +67,10 @@ namespace Shell.NTM.CommonUi
             this.Hide();
             _packetsPerSecondProcessor.StartCalculatePacketsPerSeconds();
         }
+
+        public void Dispose()
+        {
+            _packetsPerSecondProcessor.StopCalculatePacketsPerSeconds();
+        }
     }
 }

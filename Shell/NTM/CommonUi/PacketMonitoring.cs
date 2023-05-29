@@ -246,8 +246,10 @@ namespace Shell
             _sniffer.StopPacketProcessing();
             _packetsView.Clear();
             _csvProcessor.Dispose();
-            _filtersForm.Dispose();
-            _suspTrafficForm.Dispose();
+            if(_filtersForm != null)
+                _filtersForm.Dispose();
+            if(_suspTrafficForm != null)
+                _filtersForm.Dispose();
             Application.Exit();
         }
 

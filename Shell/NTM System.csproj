@@ -145,7 +145,6 @@
     <Compile Include="NTM\CsvWorker\CsvTempWriter.cs" />
     <Compile Include="NTM\StatisticsCore\Event Args\MoreThenTresholdDetectedEventArgs.cs" />
     <Compile Include="NTM\StatisticsCore\PacketsPerSecondProcessor.cs" />
-    <Compile Include="NTM\StatisticsCore\SuspTrafficDataObj.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="NTM\CommonUi\Filters.resx">
       <DependentUpon>Filters.cs</DependentUpon>

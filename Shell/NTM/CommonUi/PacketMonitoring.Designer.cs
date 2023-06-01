@@ -30,6 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PacketMonitoring));
             this.packetDataGrid = new System.Windows.Forms.DataGridView();
+            this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SourcePort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Desination = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DestinationPort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Proctocol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lenght = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ContextMenuStrip = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,13 +59,6 @@
             this.filterButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
-            this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SourcePort = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Desination = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DestinationPort = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Proctocol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lenght = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.packetDataGrid)).BeginInit();
             this.ContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -93,6 +93,52 @@
             this.packetDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.packetDataGrid.Size = new System.Drawing.Size(1008, 500);
             this.packetDataGrid.TabIndex = 2;
+            // 
+            // Nom
+            // 
+            this.Nom.HeaderText = "Номер";
+            this.Nom.Name = "Nom";
+            this.Nom.ReadOnly = true;
+            // 
+            // Source
+            // 
+            this.Source.HeaderText = "Источник";
+            this.Source.MinimumWidth = 50;
+            this.Source.Name = "Source";
+            this.Source.ReadOnly = true;
+            // 
+            // SourcePort
+            // 
+            this.SourcePort.HeaderText = "Порт источника";
+            this.SourcePort.Name = "SourcePort";
+            this.SourcePort.ReadOnly = true;
+            // 
+            // Desination
+            // 
+            this.Desination.HeaderText = "Назначение";
+            this.Desination.MinimumWidth = 50;
+            this.Desination.Name = "Desination";
+            this.Desination.ReadOnly = true;
+            // 
+            // DestinationPort
+            // 
+            this.DestinationPort.HeaderText = "Порт Назначения";
+            this.DestinationPort.Name = "DestinationPort";
+            this.DestinationPort.ReadOnly = true;
+            // 
+            // Proctocol
+            // 
+            this.Proctocol.HeaderText = "Протокол";
+            this.Proctocol.MinimumWidth = 20;
+            this.Proctocol.Name = "Proctocol";
+            this.Proctocol.ReadOnly = true;
+            // 
+            // Lenght
+            // 
+            this.Lenght.HeaderText = "Длина";
+            this.Lenght.MinimumWidth = 10;
+            this.Lenght.Name = "Lenght";
+            this.Lenght.ReadOnly = true;
             // 
             // ContextMenuStrip
             // 
@@ -288,52 +334,6 @@
             this.startButton.TabIndex = 0;
             this.startButton.UseVisualStyleBackColor = false;
             this.startButton.Click += new System.EventHandler(this.strartButton_OnClick);
-            // 
-            // Nom
-            // 
-            this.Nom.HeaderText = "Номер";
-            this.Nom.Name = "Nom";
-            this.Nom.ReadOnly = true;
-            // 
-            // Source
-            // 
-            this.Source.HeaderText = "Источник";
-            this.Source.MinimumWidth = 50;
-            this.Source.Name = "Source";
-            this.Source.ReadOnly = true;
-            // 
-            // SourcePort
-            // 
-            this.SourcePort.HeaderText = "Порт источника";
-            this.SourcePort.Name = "SourcePort";
-            this.SourcePort.ReadOnly = true;
-            // 
-            // Desination
-            // 
-            this.Desination.HeaderText = "Назначение";
-            this.Desination.MinimumWidth = 50;
-            this.Desination.Name = "Desination";
-            this.Desination.ReadOnly = true;
-            // 
-            // DestinationPort
-            // 
-            this.DestinationPort.HeaderText = "Порт Назначения";
-            this.DestinationPort.Name = "DestinationPort";
-            this.DestinationPort.ReadOnly = true;
-            // 
-            // Proctocol
-            // 
-            this.Proctocol.HeaderText = "Протокол";
-            this.Proctocol.MinimumWidth = 20;
-            this.Proctocol.Name = "Proctocol";
-            this.Proctocol.ReadOnly = true;
-            // 
-            // Lenght
-            // 
-            this.Lenght.HeaderText = "Длина";
-            this.Lenght.MinimumWidth = 10;
-            this.Lenght.Name = "Lenght";
-            this.Lenght.ReadOnly = true;
             // 
             // PacketMonitoring
             // 

@@ -53,11 +53,14 @@
             // 
             // filtersGroupBox
             // 
+            this.filtersGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.filtersGroupBox.BackColor = System.Drawing.Color.White;
             this.filtersGroupBox.Controls.Add(this.filtersLabel);
             this.filtersGroupBox.Location = new System.Drawing.Point(12, 25);
             this.filtersGroupBox.Name = "filtersGroupBox";
-            this.filtersGroupBox.Size = new System.Drawing.Size(351, 194);
+            this.filtersGroupBox.Size = new System.Drawing.Size(351, 218);
             this.filtersGroupBox.TabIndex = 3;
             this.filtersGroupBox.TabStop = false;
             // 

@@ -17,18 +17,20 @@ namespace Shell.NTM.StatisticsCore
     {
         public event EventHandler<MoreThenTresholdDetectedEventArgs> SuspTrafficDetected;
         public int Treshold { get; private set; }
+        public int TimeInterval { get; private set; }
         public Dictionary<string, int> TrafficPerSecond;
         private object _dictionaryLock;
-
+        
         private Task _trafficPerSecondProcessingTask;
         private CancellationTokenSource _cts;
 
         private PacketsProccesor _packetsProcessor;
-        
-        public PacketsPerSecondProcessor(int treshold, PacketsProccesor packetsProccesor) 
+
+        public PacketsPerSecondProcessor(int treshold, int timeInterval, PacketsProccesor packetsProccesor) 
         {
             TrafficPerSecond = new Dictionary<string, int>();
             Treshold = treshold;
+            TimeInterval = timeInterval;
             _packetsProcessor = packetsProccesor;
             _dictionaryLock = new object();
         }
@@ -53,7 +55,7 @@ namespace Shell.NTM.StatisticsCore
                 DateTime start = DateTime.Now;
                 lock(_dictionaryLock)
                 {
-                    while ((DateTime.Now - start).TotalSeconds < 5)
+                    while ((DateTime.Now - start).TotalSeconds < TimeInterval)
                     {
                         _packetsProcessor.NetworkPacketArived += _handleNetworkPacket;
                     }

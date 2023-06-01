@@ -31,7 +31,7 @@ namespace Shell.NTM.CommonUi
             _suspTrafficIps = new List<string>();
             _suspTrafficCounts = new List<int>();
 
-            _packetsPerSecondProcessor = new PacketsPerSecondProcessor(100, packetsProccesor);
+            _packetsPerSecondProcessor = new PacketsPerSecondProcessor(100, 5, packetsProccesor);
             _packetsPerSecondProcessor.StartCalculatePacketsPerSeconds();
             _packetsPerSecondProcessor.SuspTrafficDetected += _handleSuspTraffic;
 

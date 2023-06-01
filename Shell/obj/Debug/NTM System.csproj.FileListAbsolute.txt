@@ -1,0 +1,9 @@
+C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\Shell.exe
+C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\CsvHelper.dll
+C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\Microsoft.Bcl.HashCode.dll
+C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\PacketDotNet.dll
+C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\SharpPcap.dll
+C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\System.Buffers.dll
+C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Admin\source\repos\Shell-master\Shell\bin\Debug\System.Text.Encoding.CodePages.dll

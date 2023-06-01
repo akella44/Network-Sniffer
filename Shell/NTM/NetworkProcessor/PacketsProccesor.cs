@@ -34,7 +34,6 @@ namespace NTM
         private CancellationTokenSource _cts;
         
         public ILiveDevice Device { get; private set; }
-
         public PacketsProccesor(ILiveDevice device)
         {
             _udpStreamBuilder = new UdpStreamBuilder();

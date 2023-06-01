@@ -82,7 +82,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(700, 500);
             this.Name = "NetDeviceSelect";
-            this.Text = "NTM System";
+            this.Text = "Система сетевого монтироинга";
             this.Load += new System.EventHandler(this.NetDeviceSelect_Load);
             this.DeviceSelectGroupBox.ResumeLayout(false);
             this.DeviceSelectGroupBox.PerformLayout();
